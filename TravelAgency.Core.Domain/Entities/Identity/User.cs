@@ -21,6 +21,6 @@ namespace TravelAgency.Core.Domain.Entities.Identity
 
         public Address Address { get; set; } = null!;
 
-        public Roles Role { get; set; } 
+        public string Role { get; set; } = null!;
     }
 }

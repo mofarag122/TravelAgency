@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace TravelAgency.Core.Domain.Entities.Identity
 {
-    public enum Roles : int
+    public enum Roles
     {
-        user = 0, admin = 1
+        user = 1 , admin =  2 
     }
 }
