@@ -21,5 +21,13 @@ namespace TravelAgency.APIs.Controllers
             User user = _identityService.Register(userDto);
             return Ok(user);
         }
+
+        [HttpGet("login")] // POST: /api/Identity/login
+        public ActionResult<string> Login(UserToLoginDto userDto)
+        {
+            _identityService.Login(userDto);
+            return Ok("Login Done");
+        }
+
     }
 }

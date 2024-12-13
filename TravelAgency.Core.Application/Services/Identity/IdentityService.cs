@@ -25,14 +25,14 @@ namespace TravelAgency.Core.Application.Services.Identity
         {
             // To Register We Follow The Business Rules:
             /*
-             * 1.Validate The Dto Got From The Request Body(Transfered As UserToRegisterDto)(Done Using Fluent Validation)
-             * 2.Check if Email , User Name Does Not Exist Before
-             * 3.Hash The Password
-             * 4.Mapping From UserDto -> User
-             * 4.Save The User Data in Data Storage
+             * 1. Validate The Dto Got From The Request Body (Done Using Fluent Validation)
+             * 2. Check if Email, UserName Does Not Exist Before
+             * 3. Hash The Password
+             * 4. Mapping From UserDto -> User
+             * 5. Save The User Data in Data Storage
              */
 
-            if(userDto is null)
+            if (userDto is null)
                 throw new BadRequest("You have To Enter The Data");
 
             if (_identityRepository.FindUserByEmail(userDto.Email) is not null)
@@ -41,35 +41,53 @@ namespace TravelAgency.Core.Application.Services.Identity
             if (_identityRepository.FindUserByUserName(userDto.UserName) is not null)
                 throw new BadRequest("UserName already Exists");
 
-            
             var passwordHasher = new PasswordHasher<User>();
             string hashedPassword = passwordHasher.HashPassword(null!, userDto.Password);
-           
+
             var user = new User
             {
                 FirstName = userDto.FirstName,
                 LastName = userDto.LastName,
                 UserName = userDto.UserName,
                 Email = userDto.Email,
-                HashedPassword = hashedPassword,  
+                HashedPassword = hashedPassword,
                 Address = new Address
                 {
                     Country = userDto.Address.Country,
                     City = userDto.Address.City
                 },
-                Role = userDto.Role 
+                Role = userDto.Role
             };
 
             if (_identityRepository.AddUser(user))
                 return user;
             else
-                throw new BadRequest("Invalid Registeration!");
-
+                throw new BadRequest("Invalid Registration!");
         }
+
         public bool Login(UserToLoginDto userDto)
         {
-            throw new NotImplementedException();
+            // To Login We Follow These Business Rules:
+            /*
+             * 1. Validate The Dto Got From The Request Body (Done Using Fluent Validation)
+             * 2. Check if Email with Hashed Password are Matching
+             * 3. Mapping From User -> UserDto
+             */
+
+            User user = _identityRepository.FindUserByEmail(userDto.Email);
+
+            if (user is null)
+                throw new BadRequest("Invalid Login");
+
+            var passwordHasher = new PasswordHasher<User>();
+            PasswordVerificationResult verificationResult = passwordHasher.VerifyHashedPassword(user, user.HashedPassword, userDto.Password);
+
+            if (verificationResult != PasswordVerificationResult.Success)
+                throw new BadRequest("Invalid Login");
+
+            return true;
         }
-       
+
+
     }
 }
