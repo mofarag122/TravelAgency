@@ -56,8 +56,14 @@ namespace TravelAgency.Core.Application.Services.Identity
                     Country = userDto.Address.Country,
                     City = userDto.Address.City
                 },
-                Role = userDto.Role
+                
+
             };
+            if (userDto.Role.ToLower() == "user")
+                user.Role = Roles.user;
+            else if(userDto.Role.ToLower() == "admin")
+                user.Role = Roles.admin;
+
 
             if (_identityRepository.AddUser(user))
                 return user;

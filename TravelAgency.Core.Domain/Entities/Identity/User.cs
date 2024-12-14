@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using TravelAgency.Core.Domain.Entities._Common;
 
@@ -21,6 +22,9 @@ namespace TravelAgency.Core.Domain.Entities.Identity
 
         public Address Address { get; set; } = null!;
 
-        public string Role { get; set; } = null!;
+        
+        
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public Roles Role { get; set; }
     }
 }

@@ -11,22 +11,24 @@ namespace TravelAgency.Infrastructure.Persistence.Data_Storage
     internal class StorageManagement<T> where T : Entity
     {
         private readonly string FilePath;
+        private readonly JsonSerializerOptions _jsonSerializerOptions;
 
         public StorageManagement(string filePath)
         {
             FilePath = filePath;
 
+            _jsonSerializerOptions = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                Converters = { new System.Text.Json.Serialization.JsonStringEnumConverter() }
+            };
+
             FileInfo fileInfo = new FileInfo(FilePath);
 
             if (!fileInfo.Exists)
             {
-                
-                var emptyList = new List<T>(); 
-                string jsonContent = JsonSerializer.Serialize(emptyList, new JsonSerializerOptions
-                {
-                    WriteIndented = true 
-                });
-
+                var emptyList = new List<T>();
+                string jsonContent = JsonSerializer.Serialize(emptyList, _jsonSerializerOptions);
                 File.WriteAllText(FilePath, jsonContent);
             }
         }
@@ -34,44 +36,42 @@ namespace TravelAgency.Infrastructure.Persistence.Data_Storage
         public List<T> GetAll()
         {
             var jsonData = File.ReadAllText(FilePath);
-            return JsonSerializer.Deserialize<List<T>>(jsonData) ?? new List<T>();
+            return JsonSerializer.Deserialize<List<T>>(jsonData, _jsonSerializerOptions) ?? new List<T>();
         }
 
-        public T GetById(int Id)
+        public T GetById(int id)
         {
             List<T> entities = GetAll();
-            T entity = entities.FirstOrDefault(e => e.Id == Id) ?? null!;
-            return entity;
+            return entities.FirstOrDefault(e => e.Id == id) ?? null!;
         }
 
-        public bool Add(T Entity)
+        public bool Add(T entity)
         {
-            if (Entity is null)
+            if (entity is null)
                 return false;
 
             List<T> entities = GetAll();
 
-            // If no entities exist, initialize Id to 1
             if (entities == null || !entities.Any())
             {
-                entities = new List<T>(); // Ensure entities is initialized
-                Entity.Id = 1;
+                entities = new List<T>();
+                entity.Id = 1;
             }
             else
             {
-                T LastEntity = entities.Last(); // Safe because the list is non-empty
-                Entity.Id = LastEntity.Id + 1;
+                T lastEntity = entities.Last();
+                entity.Id = lastEntity.Id + 1;
             }
 
-            entities.Add(Entity);
+            entities.Add(entity);
             Save(entities);
 
             return true;
         }
 
-        public bool Update(T Entity)
+        public bool Update(T entity)
         {
-            if (Entity is null)
+            if (entity is null)
                 return false;
 
             List<T> entities = GetAll();
@@ -79,12 +79,11 @@ namespace TravelAgency.Infrastructure.Persistence.Data_Storage
             if (entities is null || !entities.Any())
                 return false;
 
-           
-            int index = entities.FindIndex(e => e.Id == Entity.Id);
+            int index = entities.FindIndex(e => e.Id == entity.Id);
             if (index == -1)
-                return false; 
-       
-            entities[index] = Entity;
+                return false;
+
+            entities[index] = entity;
             Save(entities);
 
             return true;
@@ -97,25 +96,21 @@ namespace TravelAgency.Infrastructure.Persistence.Data_Storage
             if (entities is null || !entities.Any())
                 return false;
 
-            
             T entityToRemove = entities.FirstOrDefault(e => e.Id == id) ?? null!;
 
             if (entityToRemove is null)
-                return false; 
+                return false;
 
-            
             entities.Remove(entityToRemove);
-
             Save(entities);
 
             return true;
         }
 
-        public void Save(List<T> Entities)
+        private void Save(List<T> entities)
         {
-            var JsonData = JsonSerializer.Serialize(Entities);
-            File.WriteAllText(FilePath, JsonData);
+            var jsonData = JsonSerializer.Serialize(entities, _jsonSerializerOptions);
+            File.WriteAllText(FilePath, jsonData);
         }
-
     }
 }
