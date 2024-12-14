@@ -1,4 +1,5 @@
 
+using TravelAgency.APIs.Middlewares;
 using TravelAgency.Core.Application.Service_Contracts;
 using TravelAgency.Core.Application.Services.Identity;
 using TravelAgency.Core.Domain.Repository_Contracts;
@@ -23,6 +24,8 @@ namespace TravelAgency.APIs
             builder.Services.AddScoped(typeof(IIdentityService), typeof(IdentityService));
 
             var app = builder.Build();
+
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
