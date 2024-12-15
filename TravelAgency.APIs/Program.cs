@@ -2,7 +2,9 @@
 using TravelAgency.APIs.Middlewares;
 using TravelAgency.Core.Application.Service_Contracts;
 using TravelAgency.Core.Application.Services;
+using TravelAgency.Core.Domain.Data_Storage_Initializer_Contract;
 using TravelAgency.Core.Domain.Repository_Contracts;
+using TravelAgency.Infrastructure.Persistence.Data_seeding;
 using TravelAgency.Infrastructure.Persistence.Repositories;
 
 namespace TravelAgency.APIs
@@ -28,14 +30,16 @@ namespace TravelAgency.APIs
             #region Notification Dependency Injection
             builder.Services.AddScoped(typeof(INotificationRepository), typeof(NotificationRepository));
             builder.Services.AddScoped(typeof(INotificationService), typeof(NotificationService));
-            #endregion 
-            
+            #endregion
+
+            builder.Services.AddScoped(typeof(IDataStorageInitializer), typeof(DataStorageInitializer));
             
             #endregion
 
 
             var app = builder.Build();
 
+           
             #region Kestrel Pipelines Within a Request
            
             app.UseMiddleware<ExceptionHandlingMiddleware>();

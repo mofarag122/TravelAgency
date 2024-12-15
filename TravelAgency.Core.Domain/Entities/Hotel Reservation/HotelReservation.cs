@@ -4,7 +4,7 @@ using TravelAgency.Core.Domain.Entities._Common;
 
 namespace TravelAgency.Core.Domain.Entities.Hotel_Reservation
 {
-    public class Reservation : Entity
+    public class HotelReservation : Entity
     {
         public int UserId { get; set; }
 
