@@ -3,7 +3,7 @@ using TravelAgency.APIs.Middlewares;
 using TravelAgency.Core.Application.Service_Contracts;
 using TravelAgency.Core.Application.Services.Identity;
 using TravelAgency.Core.Domain.Repository_Contracts;
-using TravelAgency.Infrastructure.Persistence.Repositories.Identity;
+using TravelAgency.Infrastructure.Persistence.Repositories;
 
 namespace TravelAgency.APIs
 {

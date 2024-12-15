@@ -8,12 +8,12 @@ using TravelAgency.Core.Domain.Entities.Identity;
 namespace TravelAgency.Infrastructure.Persistence.Data_Storage
 {
     // CRUD [Create - Return - Update - Delete]
-    internal class StorageManagement<T> where T : Entity
+    internal class _StorageManagement<T> where T : Entity
     {
         private readonly string FilePath;
         private readonly JsonSerializerOptions _jsonSerializerOptions;
 
-        public StorageManagement(string filePath)
+        public _StorageManagement(string filePath)
         {
             FilePath = filePath;
 
