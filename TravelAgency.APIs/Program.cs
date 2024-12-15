@@ -32,6 +32,12 @@ namespace TravelAgency.APIs
             builder.Services.AddScoped(typeof(INotificationService), typeof(NotificationService));
             #endregion
 
+            #region Hotel Reservation Dependency Injection
+            builder.Services.AddScoped(typeof(IHotelRepository), typeof(HotelRepository));
+            builder.Services.AddScoped(typeof(IHotelReservationRepository), typeof(HotelReservationRepository));
+            builder.Services.AddScoped(typeof(IHotelReservationService), typeof(HotelReservationService));
+            #endregion
+
             builder.Services.AddScoped(typeof(IDataStorageInitializer), typeof(DataStorageInitializer));
             
             #endregion
