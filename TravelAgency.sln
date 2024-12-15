@@ -19,15 +19,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{82E6A0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CMS", "CMS", "{E1A86E20-EA5D-4C9B-A026-89107C095567}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgency.Core.Application", "TravelAgency.Core.Application\TravelAgency.Core.Application.csproj", "{E11D057A-5C52-403D-8190-9C7792C1E2FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgency.Core.Application", "TravelAgency.Core.Application\TravelAgency.Core.Application.csproj", "{E11D057A-5C52-403D-8190-9C7792C1E2FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgency.Core.Domain", "TravelAgency.Core.Domain\TravelAgency.Core.Domain.csproj", "{2E09DC90-466E-44B5-8807-92B77D518473}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgency.Core.Domain", "TravelAgency.Core.Domain\TravelAgency.Core.Domain.csproj", "{2E09DC90-466E-44B5-8807-92B77D518473}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgency.Infrastructure.Persistence", "TravelAgency.Infrastructure.Persistence\TravelAgency.Infrastructure.Persistence.csproj", "{2BECB7A1-78F1-49BA-ADF2-086B19E1EE4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgency.Infrastructure.Persistence", "TravelAgency.Infrastructure.Persistence\TravelAgency.Infrastructure.Persistence.csproj", "{2BECB7A1-78F1-49BA-ADF2-086B19E1EE4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgency.Infrastructure.ThirdParty", "TravelAgency.Infrastructure.ThirdParty\TravelAgency.Infrastructure.ThirdParty.csproj", "{94A26093-182B-40AA-AD36-BB64B7738629}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgency.Infrastructure.ThirdParty", "TravelAgency.Infrastructure.ThirdParty\TravelAgency.Infrastructure.ThirdParty.csproj", "{94A26093-182B-40AA-AD36-BB64B7738629}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgency.APIs", "TravelAgency.APIs\TravelAgency.APIs.csproj", "{1CDCE828-35A1-476A-95E9-140C57A5B32C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgency.APIs", "TravelAgency.APIs\TravelAgency.APIs.csproj", "{1CDCE828-35A1-476A-95E9-140C57A5B32C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgency.AdminDashboard", "TravelAgency.AdminDashboard\TravelAgency.AdminDashboard.csproj", "{69B26836-907F-4E90-8C6B-A5309806A6FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{1CDCE828-35A1-476A-95E9-140C57A5B32C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CDCE828-35A1-476A-95E9-140C57A5B32C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CDCE828-35A1-476A-95E9-140C57A5B32C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69B26836-907F-4E90-8C6B-A5309806A6FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69B26836-907F-4E90-8C6B-A5309806A6FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69B26836-907F-4E90-8C6B-A5309806A6FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69B26836-907F-4E90-8C6B-A5309806A6FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +77,7 @@ Global
 		{2BECB7A1-78F1-49BA-ADF2-086B19E1EE4B} = {AB6AFDCD-4E2E-4BAA-B1A4-FD053AD9C7D3}
 		{94A26093-182B-40AA-AD36-BB64B7738629} = {AB6AFDCD-4E2E-4BAA-B1A4-FD053AD9C7D3}
 		{1CDCE828-35A1-476A-95E9-140C57A5B32C} = {0B1F5337-34D9-41F1-B9EE-1D13EB880EC6}
+		{69B26836-907F-4E90-8C6B-A5309806A6FB} = {E1A86E20-EA5D-4C9B-A026-89107C095567}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {928ECC7C-2D24-457A-9391-F080BAC0FA0E}
