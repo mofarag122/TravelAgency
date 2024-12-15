@@ -8,7 +8,7 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
     {
         private _StorageManagement<User> StorageManagement;
 
-        private const string FilePath = "D:\\Java\\SoftwareArchitecture\\TravelAgency\\TravelAgency.Infrastructure.Persistence\\Data Storage\\Users.json";
+        private const string FilePath = "C:\\Users\\Asus\\Source\\Repos\\TravelAgency_\\TravelAgency.Infrastructure.Persistence\\Data Storage\\Users.json";
 
         public IdentityRepository()
         {
@@ -20,6 +20,10 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
             return StorageManagement.Add(User);
         }
 
+        public void UpdateUser(User user)
+        {
+            StorageManagement.Update(user);
+        }
         public User FindUserByEmail(string Email)
         {
             return StorageManagement.GetAll().FirstOrDefault(e => e.Email == Email) ?? null!;
@@ -29,6 +33,10 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
         {
             return StorageManagement.GetAll().FirstOrDefault(e => e.UserName == UserName) ?? null!;
         }
+        public User FindUserByPhoneNumber(string PhoneNumber)
+        {
+            return StorageManagement.GetAll().FirstOrDefault(e => e.PhoneNumber == PhoneNumber) ?? null!;
+        }
 
         public bool CheckEmailWithPassword(string Email, string HashedPassword)
         {
@@ -36,5 +44,7 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
             return User.HashedPassword == HashedPassword;
 
         }
+
+
     }
 }

@@ -18,6 +18,8 @@ namespace TravelAgency.Core.Domain.Entities.Identity
 
         public string Email { get; set; } = null!;
 
+        public string? PhoneNumber { get; set; }
+
         public string HashedPassword { get; set; } = null!;
 
         public Address Address { get; set; } = null!;

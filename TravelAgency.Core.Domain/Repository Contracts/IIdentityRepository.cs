@@ -12,9 +12,12 @@ namespace TravelAgency.Core.Domain.Repository_Contracts
     {
         public bool AddUser(User User);
 
+        public void UpdateUser(User user);
         public User FindUserByEmail(string Email);
 
         public User FindUserByUserName(string UserName);
+        public User FindUserByPhoneNumber(string UserName);
+
 
         public bool CheckEmailWithPassword(string Email, string HashedPassword);
     }

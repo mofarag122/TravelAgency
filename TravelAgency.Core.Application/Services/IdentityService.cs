@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TravelAgency.Core.Application.DTOs.Identity;
+using TravelAgency.Core.Application.DTOs.Notification;
 using TravelAgency.Core.Application.Exceptions;
 using TravelAgency.Core.Application.Service_Contracts;
 using TravelAgency.Core.Domain.Entities.Identity;
+using TravelAgency.Core.Domain.Entities.Notification;
 using TravelAgency.Core.Domain.Repository_Contracts;
 
 namespace TravelAgency.Core.Application.Services
@@ -51,6 +53,7 @@ namespace TravelAgency.Core.Application.Services
                 UserName = userDto.UserName,
                 Email = userDto.Email,
                 HashedPassword = hashedPassword,
+                PhoneNumber = userDto.PhoneNumber,
                 Address = new Address
                 {
                     Country = userDto.Address.Country,
@@ -92,6 +95,66 @@ namespace TravelAgency.Core.Application.Services
                 throw new BadRequest("Invalid Login");
 
             return true;
+        }
+
+        public async Task<NotificationToResetPasswordDto> ResetPassword(INotificationService notificationService, UserToResetPasswordDto userDto)
+        {
+            // To reset Password We Follow The Business Rules:
+            /*
+             * 1. Check if User Send Either Email or Phone Number   
+             * 2. Check if Email or Phone Number  Exists 
+             * 3. Make a Notification with new Password  
+             * 4. Update User Password
+             * 5. return The Notification Content as a reponse
+             */
+
+
+            User user;
+
+            if (userDto.Email is null && userDto.PhoneNumber is null)
+                throw new BadRequest("Enter Either Email or Your Phone Number.");
+            else if (userDto.Email is not null)
+            {
+                user = _identityRepository.FindUserByEmail(userDto.Email);
+                if (user is null)
+                    throw new BadRequest("Email is Not Found!");
+
+            }
+            else
+            {
+                user = _identityRepository.FindUserByPhoneNumber(userDto.PhoneNumber!);
+                if (user is null)
+                    throw new BadRequest("Phone Number is Not Found!");
+            }
+
+
+            string newPassword = Guid.NewGuid().ToString();
+            Notification notification = new Notification()
+            {
+                UserId = user.Id,
+                Recipient = userDto.Email is not null ? userDto.Email : userDto.PhoneNumber,
+                Content = $"Dear {user.UserName} , your New Password is {newPassword} .",
+                TemplateName = Templates.resetPassword,
+                Channel = userDto.Email is not null ? Channels.email : Channels.sms,
+            };
+
+            await notificationService.QueueNotificationAsync(notification);
+            await notificationService.ProcessQueueAsync();
+
+            var passwordHasher = new PasswordHasher<User>();
+            string hashedPassword = passwordHasher.HashPassword(null!, newPassword);
+            user.HashedPassword = hashedPassword;
+
+            _identityRepository.UpdateUser(user);
+
+
+            return new NotificationToResetPasswordDto()
+            {
+                Content = notification.Content,
+                Recipient = notification.Recipient,
+                Channel = notification.Channel.ToString(),
+            };
+
         }
 
 

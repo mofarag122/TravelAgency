@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TravelAgency.Core.Application.DTOs.Identity;
+using TravelAgency.Core.Application.DTOs.Notification;
 using TravelAgency.Core.Application.Service_Contracts;
 using TravelAgency.Core.Domain.Entities.Identity;
 
@@ -9,9 +10,12 @@ namespace TravelAgency.APIs.Controllers
     {
         private IIdentityService _identityService;
 
-        public IdentityController(IIdentityService identityService)
+        private INotificationService _notificationService;
+
+        public IdentityController(IIdentityService identityService , INotificationService notificationService)
         {
             _identityService = identityService;
+            _notificationService = notificationService; 
         }
 
         [HttpPost("register")] // POST: /api/Identity/register
@@ -27,6 +31,11 @@ namespace TravelAgency.APIs.Controllers
             _identityService.Login(userDto);
             return Ok("Login Done");
         }
+        [HttpGet("reset")] // GET: /api/Identity/reset
+        public async Task<ActionResult<NotificationToResetPasswordDto>> ResetPassword(UserToResetPasswordDto userDto)
+        {
+            return Ok(await _identityService.ResetPassword(_notificationService, userDto));
 
+        }
     }
 }

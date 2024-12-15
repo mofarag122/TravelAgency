@@ -1,6 +1,5 @@
 [
   {
-    "Id": 1,
     "UserId": 101,
     "Recipient": "user1@example.com",
     "Content": "Your password has been reset successfully.",
@@ -9,10 +8,10 @@
     "IsSent": true,
     "FailureReason": null,
     "TemplateName": "resetPassword",
-    "Channel": "email"
+    "Channel": "email",
+    "Id": 1
   },
   {
-    "Id": 2,
     "UserId": 102,
     "Recipient": "user2@example.com",
     "Content": "Your hotel reservation has been confirmed.",
@@ -21,22 +20,22 @@
     "IsSent": true,
     "FailureReason": null,
     "TemplateName": "hotelReservation",
-    "Channel": "email"
+    "Channel": "email",
+    "Id": 2
   },
   {
-    "Id": 3,
     "UserId": 103,
-    "Recipient": "+1234567890",
+    "Recipient": "\u002B1234567890",
     "Content": "Your event reservation has been confirmed.",
     "CreatedAt": "2024-12-14T16:00:00Z",
     "SentAt": "2024-12-14T16:15:00Z",
     "IsSent": true,
     "FailureReason": null,
     "TemplateName": "eventReservation",
-    "Channel": "sms"
+    "Channel": "sms",
+    "Id": 3
   },
   {
-    "Id": 4,
     "UserId": 101,
     "Recipient": "user1@example.com",
     "Content": "Your password reset attempt failed.",
@@ -45,10 +44,10 @@
     "IsSent": false,
     "FailureReason": "Invalid email address",
     "TemplateName": "resetPassword",
-    "Channel": "email"
+    "Channel": "email",
+    "Id": 4
   },
   {
-    "Id": 5,
     "UserId": 104,
     "Recipient": "user3@example.com",
     "Content": "Your hotel reservation has been confirmed.",
@@ -57,22 +56,22 @@
     "IsSent": true,
     "FailureReason": null,
     "TemplateName": "hotelReservation",
-    "Channel": "email"
+    "Channel": "email",
+    "Id": 5
   },
   {
-    "Id": 6,
     "UserId": 105,
-    "Recipient": "+9876543210",
+    "Recipient": "\u002B9876543210",
     "Content": "Your event reservation has been confirmed.",
     "CreatedAt": "2024-12-14T18:00:00Z",
     "SentAt": "2024-12-14T18:20:00Z",
     "IsSent": true,
     "FailureReason": null,
     "TemplateName": "eventReservation",
-    "Channel": "sms"
+    "Channel": "sms",
+    "Id": 6
   },
   {
-    "Id": 7,
     "UserId": 102,
     "Recipient": "user2@example.com",
     "Content": "Your hotel reservation has been confirmed.",
@@ -81,22 +80,22 @@
     "IsSent": true,
     "FailureReason": null,
     "TemplateName": "hotelReservation",
-    "Channel": "email"
+    "Channel": "email",
+    "Id": 7
   },
   {
-    "Id": 8,
     "UserId": 103,
-    "Recipient": "+1234567890",
+    "Recipient": "\u002B1234567890",
     "Content": "Your event reservation could not be processed.",
     "CreatedAt": "2024-12-12T17:00:00Z",
     "SentAt": null,
     "IsSent": false,
     "FailureReason": "Insufficient balance",
     "TemplateName": "eventReservation",
-    "Channel": "sms"
+    "Channel": "sms",
+    "Id": 8
   },
   {
-    "Id": 9,
     "UserId": 106,
     "Recipient": "user4@example.com",
     "Content": "Your password has been reset successfully.",
@@ -105,10 +104,10 @@
     "IsSent": true,
     "FailureReason": null,
     "TemplateName": "resetPassword",
-    "Channel": "email"
+    "Channel": "email",
+    "Id": 9
   },
   {
-    "Id": 10,
     "UserId": 107,
     "Recipient": "user5@example.com",
     "Content": "Your hotel reservation failed.",
@@ -117,10 +116,10 @@
     "IsSent": false,
     "FailureReason": "Server error",
     "TemplateName": "hotelReservation",
-    "Channel": "email"
+    "Channel": "email",
+    "Id": 10
   },
   {
-    "Id": 11,
     "UserId": 108,
     "Recipient": "user6@example.com",
     "Content": "Your password has been reset successfully.",
@@ -129,22 +128,22 @@
     "IsSent": true,
     "FailureReason": null,
     "TemplateName": "resetPassword",
-    "Channel": "email"
+    "Channel": "email",
+    "Id": 11
   },
   {
-    "Id": 12,
     "UserId": 109,
-    "Recipient": "+1231231234",
+    "Recipient": "\u002B1231231234",
     "Content": "Your event reservation has been confirmed.",
     "CreatedAt": "2024-12-08T10:00:00Z",
     "SentAt": "2024-12-08T10:15:00Z",
     "IsSent": true,
     "FailureReason": null,
     "TemplateName": "eventReservation",
-    "Channel": "sms"
+    "Channel": "sms",
+    "Id": 12
   },
   {
-    "Id": 13,
     "UserId": 101,
     "Recipient": "user1@example.com",
     "Content": "Your password has been reset successfully.",
@@ -153,10 +152,10 @@
     "IsSent": true,
     "FailureReason": null,
     "TemplateName": "resetPassword",
-    "Channel": "email"
+    "Channel": "email",
+    "Id": 13
   },
   {
-    "Id": 14,
     "UserId": 102,
     "Recipient": "user2@example.com",
     "Content": "Your hotel reservation has been confirmed.",
@@ -165,22 +164,22 @@
     "IsSent": true,
     "FailureReason": null,
     "TemplateName": "hotelReservation",
-    "Channel": "email"
+    "Channel": "email",
+    "Id": 14
   },
   {
-    "Id": 15,
     "UserId": 103,
-    "Recipient": "+1234567890",
+    "Recipient": "\u002B1234567890",
     "Content": "Your event reservation has been confirmed.",
     "CreatedAt": "2024-12-06T16:00:00Z",
     "SentAt": "2024-12-06T16:15:00Z",
     "IsSent": true,
     "FailureReason": null,
     "TemplateName": "eventReservation",
-    "Channel": "sms"
+    "Channel": "sms",
+    "Id": 15
   },
   {
-    "Id": 16,
     "UserId": 110,
     "Recipient": "user7@example.com",
     "Content": "Your password has been reset successfully.",
@@ -189,10 +188,10 @@
     "IsSent": true,
     "FailureReason": null,
     "TemplateName": "resetPassword",
-    "Channel": "email"
+    "Channel": "email",
+    "Id": 16
   },
   {
-    "Id": 17,
     "UserId": 111,
     "Recipient": "user8@example.com",
     "Content": "Your hotel reservation failed.",
@@ -201,22 +200,22 @@
     "IsSent": false,
     "FailureReason": "Invalid payment method",
     "TemplateName": "hotelReservation",
-    "Channel": "email"
+    "Channel": "email",
+    "Id": 17
   },
   {
-    "Id": 18,
     "UserId": 112,
-    "Recipient": "+9879879870",
+    "Recipient": "\u002B9879879870",
     "Content": "Your event reservation has been confirmed.",
     "CreatedAt": "2024-12-03T12:00:00Z",
     "SentAt": "2024-12-03T12:15:00Z",
     "IsSent": true,
     "FailureReason": null,
     "TemplateName": "eventReservation",
-    "Channel": "sms"
+    "Channel": "sms",
+    "Id": 18
   },
   {
-    "Id": 19,
     "UserId": 101,
     "Recipient": "user1@example.com",
     "Content": "Your password has been reset successfully.",
@@ -225,10 +224,10 @@
     "IsSent": true,
     "FailureReason": null,
     "TemplateName": "resetPassword",
-    "Channel": "email"
+    "Channel": "email",
+    "Id": 19
   },
   {
-    "Id": 20,
     "UserId": 102,
     "Recipient": "user2@example.com",
     "Content": "Your hotel reservation has been confirmed.",
@@ -237,7 +236,55 @@
     "IsSent": true,
     "FailureReason": null,
     "TemplateName": "hotelReservation",
-    "Channel": "email"
+    "Channel": "email",
+    "Id": 20
+  },
+  {
+    "UserId": 12,
+    "Recipient": "mohamedashraf35000.@gmail.com",
+    "Content": "Dear MohamedAshraf , your New Password is dfb70b8e-566f-4c33-926b-0282c55245ea .",
+    "CreatedAt": "2024-12-15T15:12:57.2033156Z",
+    "SentAt": "2024-12-15T15:12:57.3095444Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "email",
+    "Id": 21
+  },
+  {
+    "UserId": 12,
+    "Recipient": "01007857951",
+    "Content": "Dear MohamedAshraf , your New Password is 9ed371ae-9484-4cc5-8fb0-cc56a54fee8a .",
+    "CreatedAt": "2024-12-15T15:13:11.4879982Z",
+    "SentAt": "2024-12-15T15:13:11.5871249Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "sms",
+    "Id": 22
+  },
+  {
+    "UserId": 12,
+    "Recipient": "01007857951",
+    "Content": "Dear MohamedAshraf , your New Password is 2978c9ce-bdf8-452f-a2e7-098f37e2eab6 .",
+    "CreatedAt": "2024-12-15T15:13:18.5530758Z",
+    "SentAt": "2024-12-15T15:13:18.659814Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "sms",
+    "Id": 23
+  },
+  {
+    "UserId": 12,
+    "Recipient": "01007857951",
+    "Content": "Dear MohamedAshraf , your New Password is 8761c9ef-23cb-4090-a989-c7dc3ea5892a .",
+    "CreatedAt": "2024-12-15T15:15:21.0788435Z",
+    "SentAt": "2024-12-15T15:15:21.1818219Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "sms",
+    "Id": 24
   }
 ]
-
