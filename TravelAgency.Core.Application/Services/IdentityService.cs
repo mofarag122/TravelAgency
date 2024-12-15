@@ -10,7 +10,7 @@ using TravelAgency.Core.Application.Service_Contracts;
 using TravelAgency.Core.Domain.Entities.Identity;
 using TravelAgency.Core.Domain.Repository_Contracts;
 
-namespace TravelAgency.Core.Application.Services.Identity
+namespace TravelAgency.Core.Application.Services
 {
     public class IdentityService : IIdentityService
     {
@@ -56,12 +56,12 @@ namespace TravelAgency.Core.Application.Services.Identity
                     Country = userDto.Address.Country,
                     City = userDto.Address.City
                 },
-                
+
 
             };
             if (userDto.Role.ToLower() == "user")
                 user.Role = Roles.user;
-            else if(userDto.Role.ToLower() == "admin")
+            else if (userDto.Role.ToLower() == "admin")
                 user.Role = Roles.admin;
 
 
