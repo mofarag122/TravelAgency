@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TravelAgency.Core.Application.DTOs.Identity;
 using TravelAgency.Core.Application.Service_Contracts;
-using TravelAgency.Core.Application.Services.Identity;
 using TravelAgency.Core.Domain.Entities.Identity;
 
 namespace TravelAgency.APIs.Controllers
@@ -22,7 +21,7 @@ namespace TravelAgency.APIs.Controllers
             return Ok(user);
         }
 
-        [HttpGet("login")] // POST: /api/Identity/login
+        [HttpGet("login")] // GET: /api/Identity/login
         public ActionResult<string> Login(UserToLoginDto userDto)
         {
             _identityService.Login(userDto);

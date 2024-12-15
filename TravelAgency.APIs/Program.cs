@@ -1,7 +1,7 @@
 
 using TravelAgency.APIs.Middlewares;
 using TravelAgency.Core.Application.Service_Contracts;
-using TravelAgency.Core.Application.Services.Identity;
+using TravelAgency.Core.Application.Services;
 using TravelAgency.Core.Domain.Repository_Contracts;
 using TravelAgency.Infrastructure.Persistence.Repositories;
 
@@ -13,21 +13,34 @@ namespace TravelAgency.APIs
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
+            #region Configure Services & DI
+           
+            
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            #region Identity Dependency Injection
             builder.Services.AddScoped(typeof(IIdentityRepository), typeof(IdentityRepository));
             builder.Services.AddScoped(typeof(IIdentityService), typeof(IdentityService));
+            #endregion
+
+            #region Notification Dependency Injection
+            builder.Services.AddScoped(typeof(INotificationRepository), typeof(NotificationRepository));
+            builder.Services.AddScoped(typeof(INotificationService), typeof(NotificationService));
+            #endregion 
+            
+            
+            #endregion
+
 
             var app = builder.Build();
 
+            #region Kestrel Pipelines Within a Request
+           
             app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-            // Configure the HTTP request pipeline.
+
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -39,7 +52,9 @@ namespace TravelAgency.APIs
             app.UseAuthorization();
 
 
-            app.MapControllers();
+            app.MapControllers(); 
+           
+            #endregion
 
             app.Run();
         }

@@ -22,10 +22,10 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
         }
 
 
-        public void AddNotification(Notification notification)
+        public async Task AddNotificationAsync(Notification notification)
         {
-             StorageManagement.Add(notification);
-            
+            StorageManagement.Add(notification);
+            await Task.CompletedTask;
         }
 
         public IEnumerable<Notification> GetAllNotifications()
