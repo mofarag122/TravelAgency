@@ -9,7 +9,6 @@ namespace TravelAgency.APIs.Controllers
     public class IdentityController : BaseApiController
     {
         private IIdentityService _identityService;
-
         private INotificationService _notificationService;
 
         public IdentityController(IIdentityService identityService , INotificationService notificationService)
@@ -17,24 +16,28 @@ namespace TravelAgency.APIs.Controllers
             _identityService = identityService;
             _notificationService = notificationService; 
         }
-
         [HttpPost("register")] // POST: /api/Identity/register
         public ActionResult<User> register(UserToRegisterDto userDto)
         {
             User user = _identityService.Register(userDto);
             return Ok(user);
         }
-
         [HttpGet("login")] // GET: /api/Identity/login
         public ActionResult<string> Login(UserToLoginDto userDto)
         {
-            _identityService.Login(userDto);
-            return Ok("Login Done");
+            return Ok(_identityService.Login(userDto));
         }
         [HttpGet("reset")] // GET: /api/Identity/reset
         public async Task<ActionResult<NotificationToResetPasswordDto>> ResetPassword(UserToResetPasswordDto userDto)
         {
             return Ok(await _identityService.ResetPassword(_notificationService, userDto));
+
+        }
+        [HttpPost("logout")] // POST: /api/Identity/logout
+        public ActionResult<string> Logout(string? token)
+        {
+
+            return Ok(_identityService.Logout(token));
 
         }
     }

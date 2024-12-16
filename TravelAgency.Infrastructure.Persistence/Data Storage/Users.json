@@ -180,5 +180,19 @@
     },
     "Role": "user",
     "Id": 13
+  },
+  {
+    "FirstName": "Anas",
+    "LastName": null,
+    "UserName": "Anas##",
+    "Email": "Anas.@gmail.com",
+    "PhoneNumber": "0100622232",
+    "HashedPassword": "AQAAAAIAAYagAAAAEDQI9\u002BCq8jn3zaG\u002BtLvADvuQZQ93OyvEpi1oA63wbeJ7YWqZUB0wZ5IeAKgmD\u002BAQ/g==",
+    "Address": {
+      "Country": "Egypt",
+      "City": "Cairo"
+    },
+    "Role": "user",
+    "Id": 14
   }
 ]

@@ -2,7 +2,7 @@
   {
     "Id": 1,
     "Name": "Grand Luxury Hotel",
-    "ImagePath": "images/grand-luxury-hotel.jpg",
+    "ImagePath": "C:\\Users\\Asus\\Source\\Repos\\TravelAgency\\TravelAgency.APIs\\wwwroot\\images\\hotels\\photo1.jpgg",
     "Location": {
       "Country": "USA",
       "City": "New York",

@@ -1,16 +1,13 @@
 ﻿using System.Net;
 using System.Text.Json;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
+using TravelAgency.Core.Application.Exceptions;
 
 namespace TravelAgency.APIs.Middlewares
 {
-
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.Extensions.Logging;
-    using System;
-    using System.Net;
-    using System.Text.Json;
-    using System.Threading.Tasks;
-
     public class ExceptionHandlingMiddleware
     {
         private readonly RequestDelegate _next;
@@ -34,7 +31,7 @@ namespace TravelAgency.APIs.Middlewares
             }
         }
 
-        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
+        public async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             _logger.LogError(exception, "An error occurred.");
 
@@ -50,13 +47,22 @@ namespace TravelAgency.APIs.Middlewares
             };
 
             // Handle specific application exceptions
-            if (exception is ApplicationException appEx)
+            if (exception is UnAutherized unauthorizedEx)
             {
-                statusCode = (int)HttpStatusCode.BadRequest; // Example for client errors
+                statusCode = (int)HttpStatusCode.Unauthorized; // 401 for UnAuthorized exceptions
                 errorResponse = new
                 {
                     StatusCode = statusCode,
-                    Message = appEx.Message // Send user-friendly message
+                    Message = unauthorizedEx.Message // Custom error message
+                };
+            }
+            else if (exception is ApplicationException appEx)
+            {
+                statusCode = (int)HttpStatusCode.BadRequest; // 400 for generic application exceptions
+                errorResponse = new
+                {
+                    StatusCode = statusCode,
+                    Message = appEx.Message
                 };
             }
 
@@ -67,6 +73,4 @@ namespace TravelAgency.APIs.Middlewares
             await response.WriteAsync(jsonResponse);
         }
     }
-
-
 }

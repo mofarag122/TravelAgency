@@ -15,7 +15,7 @@ namespace TravelAgency.Core.Application.Services
         private IHotelRepository _hotelRepository;
         private IHotelReservationRepository _reservationRepository;
 
-        public HotelReservationService(IHotelRepository hotelRepository , IHotelReservationRepository reservationRepository)
+        public HotelReservationService(IHotelRepository hotelRepository, IHotelReservationRepository reservationRepository)
         {
             _hotelRepository = hotelRepository;
             _reservationRepository = reservationRepository;
@@ -24,25 +24,34 @@ namespace TravelAgency.Core.Application.Services
         public List<HotelToReturnDto> GetAllHotels()
         {
             List<Hotel> hotels = _hotelRepository.GetAllHotels();
-            if (hotels == null || !hotels.Any())
-                return new List<HotelToReturnDto>(); 
 
-          
-            List<HotelToReturnDto> hotelsDto = hotels.Select(hotel => new HotelToReturnDto
+            if (hotels is null)
+                return null!;
+
+            List<HotelToReturnDto> hotelsDto = new List<HotelToReturnDto>();
+            foreach (var hotel in hotels)
             {
-                Name = hotel.Name,
-                Location = hotel.Location,
-                ImagePath = hotel.ImagePath,
-                Rooms = hotel.Rooms.Select(room => new RoomToReturnDto
+                HotelToReturnDto hotelDto = new HotelToReturnDto();
+                hotelDto.Name = hotel.Name;
+                hotelDto.Location = hotel.Location;
+                hotelDto.ImagePath = hotel.ImagePath;
+                List<RoomToReturnDto> roomsDto = new List<RoomToReturnDto>();
+                RoomToReturnDto roomDto = new RoomToReturnDto();
+                foreach (var room in hotel.Rooms)
                 {
-                    RoomType = room.RoomType.ToString(),
-                    PricePerNight = room.PricePerNight,
-                    ImagePaths = room.ImagePaths
-                }).ToList()
-            }).ToList();
 
+                    roomDto.RoomType = room.RoomType.ToString();
+                    roomDto.PricePerNight = room.PricePerNight;
+                    roomDto.ImagePaths = room.ImagePaths;
+
+                    roomsDto.Add(roomDto);
+
+                }
+                hotelDto.Rooms = roomsDto;
+
+                hotelsDto.Add(hotelDto);
+            }
             return hotelsDto;
         }
-
     }
 }

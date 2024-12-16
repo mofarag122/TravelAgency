@@ -8,7 +8,7 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
     {
         private _StorageManagement<User> StorageManagement;
 
-        private const string FilePath = "C:\\Users\\Asus\\Source\\Repos\\TravelAgency_\\TravelAgency.Infrastructure.Persistence\\Data Storage\\Users.json";
+        private const string FilePath = "C:\\Users\\Asus\\Source\\Repos\\TravelAgency\\TravelAgency.Infrastructure.Persistence\\Data Storage\\Users.json";
 
         public IdentityRepository()
         {

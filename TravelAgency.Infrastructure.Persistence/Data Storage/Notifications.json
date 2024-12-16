@@ -286,5 +286,65 @@
     "TemplateName": "resetPassword",
     "Channel": "sms",
     "Id": 24
+  },
+  {
+    "UserId": 14,
+    "Recipient": "0100622232",
+    "Content": "Dear Anas## , your New Password is 0044ecb2-a97a-46db-9b74-d68e91b922c9 .",
+    "CreatedAt": "2024-12-16T14:39:52.7295318Z",
+    "SentAt": "2024-12-16T14:39:52.8423569Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "sms",
+    "Id": 25
+  },
+  {
+    "UserId": 14,
+    "Recipient": "0100622232",
+    "Content": "Dear Anas## , your New Password is db2c1bca-d10b-4da8-b1eb-f6917fa41d9a .",
+    "CreatedAt": "2024-12-16T14:45:50.954815Z",
+    "SentAt": "2024-12-16T14:45:51.0660381Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "sms",
+    "Id": 26
+  },
+  {
+    "UserId": 14,
+    "Recipient": "0100622232",
+    "Content": "Dear Anas## , your New Password is cd9cb1e6-94c0-463e-8a5d-85d5a5e26847 .",
+    "CreatedAt": "2024-12-16T14:45:57.8780644Z",
+    "SentAt": "2024-12-16T14:45:57.9816722Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "sms",
+    "Id": 27
+  },
+  {
+    "UserId": 14,
+    "Recipient": "0100622232",
+    "Content": "Dear Anas## , your New Password is c5926b71-6bb4-4e73-b31d-74f557537187 .",
+    "CreatedAt": "2024-12-16T14:46:46.6321516Z",
+    "SentAt": "2024-12-16T14:46:46.7310607Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "sms",
+    "Id": 28
+  },
+  {
+    "UserId": 14,
+    "Recipient": "0100622232",
+    "Content": "Dear Anas## , your New Password is 2f948d67-d651-491b-a12e-1edba4a074e6 .",
+    "CreatedAt": "2024-12-16T16:01:09.7652244Z",
+    "SentAt": "2024-12-16T16:01:09.8719085Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "sms",
+    "Id": 29
   }
 ]

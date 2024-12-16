@@ -25,6 +25,7 @@ namespace TravelAgency.APIs
             #region Identity Dependency Injection
             builder.Services.AddScoped(typeof(IIdentityRepository), typeof(IdentityRepository));
             builder.Services.AddScoped(typeof(IIdentityService), typeof(IdentityService));
+            builder.Services.AddScoped(typeof(IAuthenticationRepository) , typeof(AuthenticationRepository));
             #endregion
 
             #region Notification Dependency Injection
