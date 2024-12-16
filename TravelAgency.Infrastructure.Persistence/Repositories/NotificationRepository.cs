@@ -32,5 +32,12 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
         {
             return StorageManagement.GetAll();
         }
+
+        public async Task UpdateNotification(Notification notification)
+        {
+            
+            StorageManagement.Update(notification);
+            await Task.CompletedTask;
+        }
     }
 }

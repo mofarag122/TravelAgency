@@ -10,6 +10,9 @@ namespace TravelAgency.Core.Domain.Repository_Contracts
     public interface INotificationRepository
     {
         Task AddNotificationAsync(Notification notification);
+
+        Task UpdateNotification(Notification notification);
+
         IEnumerable<Notification> GetAllNotifications();
     }
 }

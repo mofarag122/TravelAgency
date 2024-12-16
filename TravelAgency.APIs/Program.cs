@@ -30,7 +30,6 @@ namespace TravelAgency.APIs
 
             #region Notification Dependency Injection
             builder.Services.AddScoped(typeof(INotificationRepository), typeof(NotificationRepository));
-            builder.Services.AddScoped(typeof(INotificationService), typeof(NotificationService));
             #endregion
 
             #region Hotel Reservation Dependency Injection

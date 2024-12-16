@@ -13,10 +13,12 @@ namespace TravelAgency.Core.Application.Services
     {
         private IIdentityRepository _identityRepository;
         private IAuthenticationRepository _authenticationRepository;
-        public IdentityService(IIdentityRepository identityRepository , IAuthenticationRepository authenticationRepository)
+        private INotificationRepository _notificationRepository;
+        public IdentityService(IIdentityRepository identityRepository , IAuthenticationRepository authenticationRepository, INotificationRepository notificationRepository)
         {
             _identityRepository = identityRepository;
             _authenticationRepository = authenticationRepository;
+            _notificationRepository = notificationRepository;
         }
 
         public User Register(UserToRegisterDto userDto)
@@ -107,7 +109,7 @@ namespace TravelAgency.Core.Application.Services
             return $"Token: {token}";
         }
 
-        public async Task<NotificationToResetPasswordDto> ResetPassword(INotificationService notificationService, UserToResetPasswordDto userDto)
+        public async Task<NotificationToResetPasswordDto> ResetPassword(UserToResetPasswordDto userDto)
         {
             // To reset Password We Follow The Business Rules:
             /*
@@ -148,8 +150,7 @@ namespace TravelAgency.Core.Application.Services
                 Channel = userDto.Email is not null ? Channels.email : Channels.sms,
             };
 
-            await notificationService.QueueNotificationAsync(notification);
-            await notificationService.ProcessQueueAsync();
+           await _notificationRepository.AddNotificationAsync(notification);
 
             var passwordHasher = new PasswordHasher<User>();
             string hashedPassword = passwordHasher.HashPassword(null!, newPassword);
