@@ -934,5 +934,53 @@
     "TemplateName": "hotelReservation",
     "Channel": "sms",
     "Id": 78
+  },
+  {
+    "UserId": 14,
+    "Recipient": "Anas.@gmail.com",
+    "Content": "Dear Anas## , your New Password is 6d7cded6-68af-4cab-b298-1bd5b91e1aa5 .",
+    "CreatedAt": "2024-12-17T20:10:09.3362342Z",
+    "SentAt": "2024-12-17T20:10:11.6033018Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "email",
+    "Id": 79
+  },
+  {
+    "UserId": 14,
+    "Recipient": "0100622232",
+    "Content": "Congratulations Anas##, Your Reservation Done Successfully",
+    "CreatedAt": "2024-12-17T20:11:23.30192Z",
+    "SentAt": "2024-12-17T20:11:24.9898946Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 80
+  },
+  {
+    "UserId": 14,
+    "Recipient": "0100622232",
+    "Content": "Congratulations Anas##, Your Reservation Done Successfully",
+    "CreatedAt": "2024-12-17T20:13:33.0657519Z",
+    "SentAt": "2024-12-17T20:13:34.7138229Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 81
+  },
+  {
+    "UserId": 14,
+    "Recipient": "0100622232",
+    "Content": "Congratulations Anas##, Your Reservation Done Successfully",
+    "CreatedAt": "2024-12-17T20:53:13.5537037Z",
+    "SentAt": "2024-12-17T20:53:15.8013601Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 82
   }
 ]

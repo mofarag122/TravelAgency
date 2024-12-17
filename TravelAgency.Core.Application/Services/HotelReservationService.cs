@@ -109,6 +109,8 @@ namespace TravelAgency.Core.Application.Services
             if (DateOnly.Parse(reservationDto.StartDate) > DateOnly.Parse(reservationDto.EndDate))
                 throw new BadRequest("Start Date Must be Less Than End Date");
 
+            if (DateTime.Parse(reservationDto.StartDate) < DateTime.UtcNow)
+                throw new BadRequest($"Start Date Must be from {DateTime.UtcNow}");
            
             List<HotelReservation?> roomReservations = _reservationRepository.GetReservations(reservationDto.HotelId, reservationDto.RoomId);
 
@@ -167,6 +169,7 @@ namespace TravelAgency.Core.Application.Services
 
             return "Your Reservation Done Successfully";
         }
+  
 
     }
 }
