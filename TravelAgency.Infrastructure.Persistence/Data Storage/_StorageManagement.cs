@@ -107,7 +107,7 @@ namespace TravelAgency.Infrastructure.Persistence.Data_Storage
             return true;
         }
 
-        private void Save(List<T> entities)
+        public void Save(List<T> entities)
         {
             var jsonData = JsonSerializer.Serialize(entities, _jsonSerializerOptions);
             File.WriteAllText(FilePath, jsonData);

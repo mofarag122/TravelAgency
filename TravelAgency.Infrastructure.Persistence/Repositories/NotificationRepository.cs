@@ -14,7 +14,7 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
     {
         private _StorageManagement<Notification> StorageManagement;
 
-        private const string FilePath = "C:\\Users\\Asus\\Source\\Repos\\TravelAgency_\\TravelAgency.Infrastructure.Persistence\\Data Storage\\Notifications.json";
+        private const string FilePath = "C:\\Users\\Asus\\Source\\Repos\\TravelAgency\\TravelAgency.Infrastructure.Persistence\\Data Storage\\Notifications.json";
 
         public NotificationRepository()
         {
@@ -31,6 +31,13 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
         public IEnumerable<Notification> GetAllNotifications()
         {
             return StorageManagement.GetAll();
+        }
+
+        public async Task UpdateNotification(Notification notification)
+        {
+            
+            StorageManagement.Update(notification);
+            await Task.CompletedTask;
         }
     }
 }

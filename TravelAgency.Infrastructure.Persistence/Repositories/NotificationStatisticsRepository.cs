@@ -36,10 +36,10 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
         {
            
                 var mostSentTemplate = StorageManagement.GetAll()
-                    .Where(n => n.IsSent == true)
-                    .GroupBy(n => n.TemplateName)
-                    .OrderByDescending(group => group.Count())
-                    .FirstOrDefault();
+                                                        .Where(n => n.IsSent == true)
+                                                        .GroupBy(n => n.TemplateName)
+                                                        .OrderByDescending(group => group.Count())
+                                                        .FirstOrDefault();
 
                 return mostSentTemplate?.Key.ToString() ?? "No templates sent";  
             

@@ -18,6 +18,8 @@ namespace TravelAgency.Core.Domain.Repository_Contracts
         public User FindUserByUserName(string UserName);
         public User FindUserByPhoneNumber(string UserName);
 
+        public User FindUserById(int userId);
+        
 
         public bool CheckEmailWithPassword(string Email, string HashedPassword);
     }

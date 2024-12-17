@@ -1,9 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TravelAgency.Core.Application.DTOs.Identity;
 using TravelAgency.Core.Application.DTOs.Notification;
 using TravelAgency.Core.Application.Exceptions;
@@ -17,10 +12,13 @@ namespace TravelAgency.Core.Application.Services
     public class IdentityService : IIdentityService
     {
         private IIdentityRepository _identityRepository;
-
-        public IdentityService(IIdentityRepository identityRepository)
+        private IAuthenticationRepository _authenticationRepository;
+        private INotificationRepository _notificationRepository;
+        public IdentityService(IIdentityRepository identityRepository , IAuthenticationRepository authenticationRepository, INotificationRepository notificationRepository)
         {
             _identityRepository = identityRepository;
+            _authenticationRepository = authenticationRepository;
+            _notificationRepository = notificationRepository;
         }
 
         public User Register(UserToRegisterDto userDto)
@@ -74,13 +72,14 @@ namespace TravelAgency.Core.Application.Services
                 throw new BadRequest("Invalid Registration!");
         }
 
-        public bool Login(UserToLoginDto userDto)
+        public string Login(UserToLoginDto userDto)
         {
             // To Login We Follow These Business Rules:
             /*
              * 1. Validate The Dto Got From The Request Body (Done Using Fluent Validation)
              * 2. Check if Email with Hashed Password are Matching
              * 3. Mapping From User -> UserDto
+             * 4. generate Token(GUID) and return 
              */
 
             User user = _identityRepository.FindUserByEmail(userDto.Email);
@@ -88,16 +87,29 @@ namespace TravelAgency.Core.Application.Services
             if (user is null)
                 throw new BadRequest("Invalid Login");
 
+            string token = _authenticationRepository.GetTokenByUserId(user.Id)!;
+
+            if(token is not null)
+                return $"Token: {token}";
+
             var passwordHasher = new PasswordHasher<User>();
             PasswordVerificationResult verificationResult = passwordHasher.VerifyHashedPassword(user, user.HashedPassword, userDto.Password);
 
             if (verificationResult != PasswordVerificationResult.Success)
                 throw new BadRequest("Invalid Login");
 
-            return true;
+            token = Guid.NewGuid().ToString();
+           
+            Authentication authentication  = new Authentication();
+            authentication.UserId = user.Id;    
+            authentication.Token = token;
+            _authenticationRepository.AddAuthentication(authentication);
+
+
+            return $"Token: {token}";
         }
 
-        public async Task<NotificationToResetPasswordDto> ResetPassword(INotificationService notificationService, UserToResetPasswordDto userDto)
+        public async Task<NotificationToResetPasswordDto> ResetPassword(UserToResetPasswordDto userDto)
         {
             // To reset Password We Follow The Business Rules:
             /*
@@ -138,15 +150,14 @@ namespace TravelAgency.Core.Application.Services
                 Channel = userDto.Email is not null ? Channels.email : Channels.sms,
             };
 
-            await notificationService.QueueNotificationAsync(notification);
-            await notificationService.ProcessQueueAsync();
+           await _notificationRepository.AddNotificationAsync(notification);
 
             var passwordHasher = new PasswordHasher<User>();
             string hashedPassword = passwordHasher.HashPassword(null!, newPassword);
             user.HashedPassword = hashedPassword;
 
             _identityRepository.UpdateUser(user);
-
+            _authenticationRepository.RemoveAuthentication(user.Id);
 
             return new NotificationToResetPasswordDto()
             {
@@ -157,6 +168,19 @@ namespace TravelAgency.Core.Application.Services
 
         }
 
+        public string Logout(string? token)
+        {
+            if (token is null)
+                throw new UnAutherized("You Are Not Autherized!");
 
+            Authentication authentication = _authenticationRepository.FindUserByToken(token)!;
+
+            if(authentication is null)
+                throw new UnAutherized("You Are Not Autherized!");
+
+            _authenticationRepository.RemoveAuthentication(authentication.UserId);
+
+            return "Logout Done Successfully";
+        }
     }
 }
