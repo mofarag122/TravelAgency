@@ -14,7 +14,7 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
     {
         private _StorageManagement<Notification> StorageManagement;
 
-        private const string FilePath = "C:\\Users\\Asus\\Source\\Repos\\TravelAgency\\TravelAgency.Infrastructure.Persistence\\Data Storage\\Notifications.json";
+        private const string FilePath = "D:\\SDA Project\\TravelAgency\\TravelAgency.Infrastructure.Persistence\\Data Storage\\Notifications.json";
 
         public NotificationRepository()
         {

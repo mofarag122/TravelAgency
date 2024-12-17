@@ -15,8 +15,8 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
         private _StorageManagement<Hotel> StorageManagementForHotels;
         private _StorageManagement<Room> StorageManagementForRooms;
 
-        private const string HotelsFilePath = "C:\\Users\\Asus\\Source\\Repos\\TravelAgency\\TravelAgency.Infrastructure.Persistence\\Data Storage\\Hotels.json";
-        private const string RoomsFilePath = "C:\\Users\\Asus\\Source\\Repos\\TravelAgency\\TravelAgency.Infrastructure.Persistence\\Data Storage\\Rooms.json";
+        private const string HotelsFilePath = "D:\\SDA Project\\TravelAgency\\TravelAgency.Infrastructure.Persistence\\Data Storage\\Hotels.json";
+        private const string RoomsFilePath = "D:\\SDA Project\\TravelAgency\\TravelAgency.Infrastructure.Persistence\\Data Storage\\Rooms.json";
 
         public HotelRepository()
         {
