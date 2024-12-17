@@ -1,0 +1,128 @@
+[
+  {
+    "Id": 1,
+    "RoomType": "singleRoom",
+    "ImagePaths": [ "images/room1-single.jpg" ],
+    "PricePerNight": 120.0,
+    "HotelId": 1
+  },
+  {
+    "Id": 2,
+    "RoomType": "doubleRoom",
+    "ImagePaths": [ "images/room2-double.jpg" ],
+    "PricePerNight": 200.0,
+    "HotelId": 1
+  },
+  {
+    "Id": 3,
+    "RoomType": "familyRoom",
+    "ImagePaths": [ "images/room3-family.jpg" ],
+    "PricePerNight": 350.0,
+    "HotelId": 1
+  },
+  {
+    "Id": 4,
+    "RoomType": "singleRoom",
+    "ImagePaths": [ "images/room4-single.jpg" ],
+    "PricePerNight": 100.0,
+    "HotelId": 2
+  },
+  {
+    "Id": 5,
+    "RoomType": "doubleRoom",
+    "ImagePaths": [ "images/room5-double.jpg" ],
+    "PricePerNight": 180.0,
+    "HotelId": 2
+  },
+  {
+    "Id": 6,
+    "RoomType": "singleRoom",
+    "ImagePaths": [ "images/room6-single.jpg" ],
+    "PricePerNight": 110.0,
+    "HotelId": 3
+  },
+  {
+    "Id": 7,
+    "RoomType": "familyRoom",
+    "ImagePaths": [ "images/room7-family.jpg" ],
+    "PricePerNight": 300.0,
+    "HotelId": 3
+  },
+  {
+    "Id": 8,
+    "RoomType": "doubleRoom",
+    "ImagePaths": [ "images/room8-double.jpg" ],
+    "PricePerNight": 220.0,
+    "HotelId": 4
+  },
+  {
+    "Id": 9,
+    "RoomType": "familyRoom",
+    "ImagePaths": [ "images/room9-family.jpg" ],
+    "PricePerNight": 400.0,
+    "HotelId": 4
+  },
+  {
+    "Id": 10,
+    "RoomType": "singleRoom",
+    "ImagePaths": [ "images/room10-single.jpg" ],
+    "PricePerNight": 90.0,
+    "HotelId": 5
+  },
+  {
+    "Id": 11,
+    "RoomType": "familyRoom",
+    "ImagePaths": [ "images/room11-family.jpg" ],
+    "PricePerNight": 250.0,
+    "HotelId": 5
+  },
+  {
+    "Id": 12,
+    "RoomType": "singleRoom",
+    "ImagePaths": [ "images/room12-single.jpg" ],
+    "PricePerNight": 130.0,
+    "HotelId": 6
+  },
+  {
+    "Id": 13,
+    "RoomType": "doubleRoom",
+    "ImagePaths": [ "images/room13-double.jpg" ],
+    "PricePerNight": 210.0,
+    "HotelId": 6
+  },
+  {
+    "Id": 14,
+    "RoomType": "doubleRoom",
+    "ImagePaths": [ "images/room14-double.jpg" ],
+    "PricePerNight": 320.0,
+    "HotelId": 7
+  },
+  {
+    "Id": 15,
+    "RoomType": "singleRoom",
+    "ImagePaths": [ "images/room15-single.jpg" ],
+    "PricePerNight": 140.0,
+    "HotelId": 8
+  },
+  {
+    "Id": 16,
+    "RoomType": "familyRoom",
+    "ImagePaths": [ "images/room16-family.jpg" ],
+    "PricePerNight": 370.0,
+    "HotelId": 8
+  },
+  {
+    "Id": 17,
+    "RoomType": "doubleRoom",
+    "ImagePaths": [ "images/room17-double.jpg" ],
+    "PricePerNight": 180.0,
+    "HotelId": 9
+  },
+  {
+    "Id": 18,
+    "RoomType": "familyRoom",
+    "ImagePaths": [ "images/room18-family.jpg" ],
+    "PricePerNight": 450.0,
+    "HotelId": 10
+  }
+]

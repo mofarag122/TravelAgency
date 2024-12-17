@@ -44,10 +44,10 @@ namespace TravelAgency.Infrastructure.Persistence.Data_seeding
                     
 
                   
-                    foreach (var hotelData in hotelsData)
-                    {
-                        _hotelRepository.AddHotel(hotelData);
-                    }
+                   // foreach (var hotelData in hotelsData)
+                    //{
+                      //  _hotelRepository.AddHotel(hotelData);
+                    //}
 
                   
                 }

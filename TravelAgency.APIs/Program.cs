@@ -1,4 +1,5 @@
 
+using System.Text.Json;
 using TravelAgency.APIs.Middlewares;
 using TravelAgency.Core.Application.Service_Contracts;
 using TravelAgency.Core.Application.Services;
@@ -16,8 +17,8 @@ namespace TravelAgency.APIs
             var builder = WebApplication.CreateBuilder(args);
 
             #region Configure Services & DI
-           
-            
+
+
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

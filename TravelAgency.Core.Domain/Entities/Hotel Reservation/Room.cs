@@ -16,5 +16,8 @@ namespace TravelAgency.Core.Domain.Entities.Hotel_Reservation
         public List<string>? ImagePaths { get; set; }
 
         public decimal PricePerNight { get; set; }
+
+
+        public int HotelId { get; set; }
     }
 }

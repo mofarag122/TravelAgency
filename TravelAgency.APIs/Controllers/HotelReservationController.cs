@@ -14,10 +14,18 @@ namespace TravelAgency.APIs.Controllers
             _hotelReservationService = hotelReservationService;
         }
 
-        [HttpGet] // GET: api/hotelReservation
-        public ActionResult<List<HotelToReturnDto>> GetAll()
+
+        [HttpGet("getAllHotels")] // GET: api/hotelReservation
+        public ActionResult<List<HotelToReturnDto>> GetAllHotels(string? token)
+        {          
+            return Ok(_hotelReservationService.GetAllHotels(token));
+        }
+
+
+        [HttpGet("getAllRooms")] // GET: api/getAllRooms
+        public ActionResult<List<HotelToReturnDto>> GetAllRooms(string? token , int id)
         {
-            return Ok(_hotelReservationService.GetAllHotels());
+            return Ok(_hotelReservationService.GetRooms(token , id));
         }
     }
 }

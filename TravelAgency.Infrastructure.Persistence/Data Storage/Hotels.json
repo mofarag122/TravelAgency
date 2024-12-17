@@ -2,230 +2,101 @@
   {
     "Id": 1,
     "Name": "Grand Luxury Hotel",
-    "ImagePath": "C:\\Users\\Asus\\Source\\Repos\\TravelAgency\\TravelAgency.APIs\\wwwroot\\images\\hotels\\photo1.jpgg",
+    "ImagePath": "images/hotels/photo1.jpg",
     "Location": {
       "Country": "USA",
       "City": "New York",
       "Region": "Manhattan"
-    },
-    "Rooms": [
-      {
-        "Id": 1,
-        "RoomType": "SingleRoom",
-        "ImagePaths": [ "images/room1-single.jpg" ],
-        "PricePerNight": 120.0
-      },
-      {
-        "Id": 2,
-        "RoomType": "DoubleRoom",
-        "ImagePaths": [ "images/room2-double.jpg" ],
-        "PricePerNight": 200.0
-      },
-      {
-        "Id": 3,
-        "RoomType": "FamilyRoom",
-        "ImagePaths": [ "images/room3-family.jpg" ],
-        "PricePerNight": 350.0
-      }
-    ]
+    }
   },
   {
     "Id": 2,
     "Name": "Sunset Paradise",
-    "ImagePath": "images/sunset-paradise.jpg",
+    "ImagePath": "images/hotels/sunset-paradise.jpg",
     "Location": {
       "Country": "Mexico",
       "City": "Cancun",
       "Region": "Hotel Zone"
-    },
-    "Rooms": [
-      {
-        "Id": 4,
-        "RoomType": "SingleRoom",
-        "ImagePaths": [ "images/room4-single.jpg" ],
-        "PricePerNight": 100.0
-      },
-      {
-        "Id": 5,
-        "RoomType": "DoubleRoom",
-        "ImagePaths": [ "images/room5-double.jpg" ],
-        "PricePerNight": 180.0
-      }
-    ]
+    }
   },
   {
     "Id": 3,
     "Name": "Mountain Retreat",
-    "ImagePath": "images/mountain-retreat.jpg",
+    "ImagePath": "images/hotels/mountain-retreat.jpg",
     "Location": {
       "Country": "Canada",
       "City": "Banff",
       "Region": "Alberta"
-    },
-    "Rooms": [
-      {
-        "Id": 6,
-        "RoomType": "SingleRoom",
-        "ImagePaths": [ "images/room6-single.jpg" ],
-        "PricePerNight": 110.0
-      },
-      {
-        "Id": 7,
-        "RoomType": "FamilyRoom",
-        "ImagePaths": [ "images/room7-family.jpg" ],
-        "PricePerNight": 300.0
-      }
-    ]
+    }
   },
   {
     "Id": 4,
     "Name": "Oceanview Resort",
-    "ImagePath": "images/oceanview-resort.jpg",
+    "ImagePath": "images/hotels/oceanview-resort.jpg",
     "Location": {
       "Country": "Australia",
       "City": "Sydney",
       "Region": "Bondi Beach"
-    },
-    "Rooms": [
-      {
-        "Id": 8,
-        "RoomType": "DoubleRoom",
-        "ImagePaths": [ "images/room8-double.jpg" ],
-        "PricePerNight": 220.0
-      },
-      {
-        "Id": 9,
-        "RoomType": "FamilyRoom",
-        "ImagePaths": [ "images/room9-family.jpg" ],
-        "PricePerNight": 400.0
-      }
-    ]
+    }
   },
   {
     "Id": 5,
     "Name": "Safari Lodge",
-    "ImagePath": "images/safari-lodge.jpg",
+    "ImagePath": "images/hotels/safari-lodge.jpg",
     "Location": {
       "Country": "South Africa",
       "City": "Kruger",
       "Region": "Mpumalanga"
-    },
-    "Rooms": [
-      {
-        "Id": 10,
-        "RoomType": "SingleRoom",
-        "ImagePaths": [ "images/room10-single.jpg" ],
-        "PricePerNight": 90.0
-      },
-      {
-        "Id": 11,
-        "RoomType": "FamilyRoom",
-        "ImagePaths": [ "images/room11-family.jpg" ],
-        "PricePerNight": 250.0
-      }
-    ]
+    }
   },
   {
     "Id": 6,
     "Name": "City Center Hotel",
-    "ImagePath": "images/city-center-hotel.jpg",
+    "ImagePath": "images/hotels/city-center-hotel.jpg",
     "Location": {
       "Country": "UK",
       "City": "London",
       "Region": "Westminster"
-    },
-    "Rooms": [
-      {
-        "Id": 12,
-        "RoomType": "SingleRoom",
-        "ImagePaths": [ "images/room12-single.jpg" ],
-        "PricePerNight": 130.0
-      },
-      {
-        "Id": 13,
-        "RoomType": "DoubleRoom",
-        "ImagePaths": [ "images/room13-double.jpg" ],
-        "PricePerNight": 210.0
-      }
-    ]
+    }
   },
   {
     "Id": 7,
     "Name": "Desert Oasis",
-    "ImagePath": "images/desert-oasis.jpg",
+    "ImagePath": "images/hotels/desert-oasis.jpg",
     "Location": {
       "Country": "UAE",
       "City": "Dubai",
       "Region": "Palm Jumeirah"
-    },
-    "Rooms": [
-      {
-        "Id": 14,
-        "RoomType": "DoubleRoom",
-        "ImagePaths": [ "images/room14-double.jpg" ],
-        "PricePerNight": 320.0
-      }
-    ]
+    }
   },
   {
     "Id": 8,
     "Name": "Lakefront Inn",
-    "ImagePath": "images/lakefront-inn.jpg",
+    "ImagePath": "images/hotels/lakefront-inn.jpg",
     "Location": {
       "Country": "Switzerland",
       "City": "Geneva",
       "Region": "Lakeside"
-    },
-    "Rooms": [
-      {
-        "Id": 15,
-        "RoomType": "SingleRoom",
-        "ImagePaths": [ "images/room15-single.jpg" ],
-        "PricePerNight": 140.0
-      },
-      {
-        "Id": 16,
-        "RoomType": "FamilyRoom",
-        "ImagePaths": [ "images/room16-family.jpg" ],
-        "PricePerNight": 370.0
-      }
-    ]
+    }
   },
   {
     "Id": 9,
     "Name": "Forest Haven",
-    "ImagePath": "images/forest-haven.jpg",
+    "ImagePath": "images/hotels/forest-haven.jpg",
     "Location": {
       "Country": "Germany",
       "City": "Black Forest",
       "Region": "Baden-Württemberg"
-    },
-    "Rooms": [
-      {
-        "Id": 17,
-        "RoomType": "DoubleRoom",
-        "ImagePaths": [ "images/room17-double.jpg" ],
-        "PricePerNight": 180.0
-      }
-    ]
+    }
   },
   {
     "Id": 10,
     "Name": "Island Getaway",
-    "ImagePath": "images/island-getaway.jpg",
+    "ImagePath": "images/hotels/island-getaway.jpg",
     "Location": {
       "Country": "Maldives",
       "City": "Male",
       "Region": "North Atoll"
-    },
-    "Rooms": [
-      {
-        "Id": 18,
-        "RoomType": "FamilyRoom",
-        "ImagePaths": [ "images/room18-family.jpg" ],
-        "PricePerNight": 450.0
-      }
-    ]
+    }
   }
 ]
-

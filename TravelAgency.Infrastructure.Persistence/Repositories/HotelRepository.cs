@@ -11,23 +11,39 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
 {
     public class HotelRepository : IHotelRepository
     {
-        private _StorageManagement<Hotel> StorageManagement;
+        private _StorageManagement<Hotel> StorageManagementForHotels;
+        private _StorageManagement<Room> StorageManagementForRooms;
 
-        private const string FilePath = "C:\\Users\\Asus\\Source\\Repos\\TravelAgency\\TravelAgency.Infrastructure.Persistence\\Data Storage\\Hotels.json";
+        private const string HotelsFilePath = "C:\\Users\\Asus\\Source\\Repos\\TravelAgency\\TravelAgency.Infrastructure.Persistence\\Data Storage\\Hotels.json";
+        private const string RoomsFilePath = "C:\\Users\\Asus\\Source\\Repos\\TravelAgency\\TravelAgency.Infrastructure.Persistence\\Data Storage\\Rooms.json";
 
         public HotelRepository()
         {
-            StorageManagement = new _StorageManagement<Hotel>(FilePath);
-        }
-
-        public void AddHotel(Hotel hotel)
-        {
-            StorageManagement.Add(hotel);   
+            StorageManagementForHotels = new _StorageManagement<Hotel>(HotelsFilePath);
+            StorageManagementForRooms  =  new _StorageManagement<Room>(RoomsFilePath);
         }
 
         public List<Hotel> GetAllHotels()
         {
-            return StorageManagement.GetAll();
+            return StorageManagementForHotels.GetAll();
+        }
+
+        public List<Hotel> GetAllHotelsWithRooms()
+        {
+            List<Room> rooms = StorageManagementForRooms.GetAll();
+            List<Hotel> hotels = StorageManagementForHotels.GetAll();
+
+            foreach (var hotel in hotels)
+            {
+                hotel.Rooms = rooms.Where(room => room.HotelId == hotel.Id).ToList();
+            }
+
+            return hotels;
+        }
+
+        public List<Room> GetRoomsById(int hotelId)
+        {
+            return StorageManagementForRooms.GetAll().Where(r => r.HotelId == hotelId).ToList();
         }
     }
 }

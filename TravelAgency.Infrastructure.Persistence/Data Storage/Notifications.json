@@ -646,5 +646,29 @@
     "TemplateName": "resetPassword",
     "Channel": "email",
     "Id": 54
+  },
+  {
+    "UserId": 14,
+    "Recipient": "Anas.@gmail.com",
+    "Content": "Dear Anas## , your New Password is fb05aba3-aeae-40b2-a0e2-1cd5e89c37b6 .",
+    "CreatedAt": "2024-12-17T15:47:28.8172037Z",
+    "SentAt": "2024-12-17T15:47:30.9665384Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "email",
+    "Id": 55
+  },
+  {
+    "UserId": 14,
+    "Recipient": "Anas.@gmail.com",
+    "Content": "Dear Anas## , your New Password is d4ba6e5d-3aaf-4fae-af93-d5b1e4b99769 .",
+    "CreatedAt": "2024-12-17T16:33:22.3961781Z",
+    "SentAt": "2024-12-17T16:33:24.7951059Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "email",
+    "Id": 56
   }
 ]

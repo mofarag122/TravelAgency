@@ -17,6 +17,6 @@ namespace TravelAgency.Core.Application.DTOs.HotelReservation
         public Location Location { get; set; } = null!;
 
 
-        public List<RoomToReturnDto> Rooms = new List<RoomToReturnDto>();
+        public List<RoomToReturnDto>? Rooms = new List<RoomToReturnDto>();
     }
 }
