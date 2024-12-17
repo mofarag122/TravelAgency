@@ -27,5 +27,11 @@ namespace TravelAgency.APIs.Controllers
         {
             return Ok(_hotelReservationService.GetRooms(token , id));
         }
+
+        [HttpPost("reserveRoom")] // POST: api/reserveRoom
+        public ActionResult<string> Reserve(string? token ,[FromBody] ReservationToCreateDto reservationDto)
+        {
+            return Ok(_hotelReservationService.ReserveRoom(token, reservationDto));
+        }
     }
 }

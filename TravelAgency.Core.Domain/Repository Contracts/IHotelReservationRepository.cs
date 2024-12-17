@@ -9,7 +9,10 @@ namespace TravelAgency.Core.Domain.Repository_Contracts
 {
     public interface IHotelReservationRepository
     {
-        void AddHotelReservation(HotelReservation hotelReservation);
+        void AddReservation(HotelReservation hotelReservation);
 
+        public List<HotelReservation?> GetReservations(int hotelId, int roomId);
+
+        public void UpdateReservation(HotelReservation hotelReservation);
     }
 }

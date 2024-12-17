@@ -16,5 +16,6 @@ namespace TravelAgency.Core.Application.DTOs.HotelReservation
         public List<string>? ImagePaths { get; set; }
 
         public decimal PricePerNight { get; set; }
+
     }
 }

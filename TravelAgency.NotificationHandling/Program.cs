@@ -53,7 +53,7 @@ namespace TravelAgency.NotificationHandling
                     var notification = NotificationQueue.Dequeue();
                     try
                     {
-                        Console.WriteLine($"[Sending] Content: {notification.Content}, Channel: {notification.Channel}, Recipient: {notification.Recipient}");
+                        Console.WriteLine($"[Sending] Content: {notification.Content}");
                         await Task.Delay(1000, cancellationToken); 
 
                     

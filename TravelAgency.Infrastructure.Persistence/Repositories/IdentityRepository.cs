@@ -38,6 +38,7 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
             return StorageManagement.GetAll().FirstOrDefault(e => e.PhoneNumber == PhoneNumber) ?? null!;
         }
 
+
         public bool CheckEmailWithPassword(string Email, string HashedPassword)
         {
             User User = FindUserByEmail(Email);
@@ -45,6 +46,9 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
 
         }
 
-
+        public User FindUserById(int userId)
+        {
+           return StorageManagement.GetById(userId);
+        }
     }
 }

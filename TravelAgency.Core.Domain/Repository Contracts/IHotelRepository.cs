@@ -12,5 +12,7 @@ namespace TravelAgency.Core.Domain.Repository_Contracts
         List<Hotel> GetAllHotels();
         public List<Hotel> GetAllHotelsWithRooms();
         public List<Room> GetRoomsById(int hotelId);
+
+        public Room GetRoomById(int hotelId, int roomId);
     }
 }

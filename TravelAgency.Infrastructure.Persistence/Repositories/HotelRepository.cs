@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using TravelAgency.Core.Domain.Entities.Hotel_Reservation;
 using TravelAgency.Core.Domain.Repository_Contracts;
 using TravelAgency.Infrastructure.Persistence.Data_Storage;
@@ -45,5 +46,12 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
         {
             return StorageManagementForRooms.GetAll().Where(r => r.HotelId == hotelId).ToList();
         }
+
+        public Room GetRoomById(int hotelId , int roomId)
+        {
+            return StorageManagementForRooms.GetAll().FirstOrDefault(r => r.Id == roomId && r.HotelId == hotelId)!;
+        }
+
+
     }
 }

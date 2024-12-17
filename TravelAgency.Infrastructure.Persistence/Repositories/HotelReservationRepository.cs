@@ -18,9 +18,19 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
         {
             StorageManagement = new _StorageManagement<HotelReservation>(FilePath);
         }
-        public void AddHotelReservation(HotelReservation hotelReservation)
+        public void AddReservation(HotelReservation hotelReservation)
         {
             StorageManagement.Add(hotelReservation);    
+        }
+
+        public List<HotelReservation?> GetReservations(int hotelId, int roomId)
+        {
+            return StorageManagement.GetAll().Where(hr => hr.RoomsId == roomId && hr.HotelId == hotelId).ToList()!;
+        }
+
+        public void UpdateReservation(HotelReservation hotelReservation)
+        {
+            StorageManagement.Update(hotelReservation);
         }
     }
 }
