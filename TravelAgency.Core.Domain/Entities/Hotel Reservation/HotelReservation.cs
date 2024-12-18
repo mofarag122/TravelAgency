@@ -10,7 +10,7 @@ namespace TravelAgency.Core.Domain.Entities.Hotel_Reservation
 
         public int HotelId { get; set; }
 
-        public int RoomsId { get; set; }
+        public int RoomId { get; set; }
 
         public DateOnly StartDate { get; set; }
 

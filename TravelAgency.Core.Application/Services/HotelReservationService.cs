@@ -157,7 +157,7 @@ namespace TravelAgency.Core.Application.Services
             {
                 UserId = user.Id,
                 HotelId = reservationDto.HotelId,
-                RoomsId = reservationDto.RoomId,
+                RoomId = reservationDto.RoomId,
                 StartDate = DateOnly.TryParse(reservationDto.StartDate, out DateOnly startDateResult) ? startDateResult : default,
                 EndDate = DateOnly.TryParse(reservationDto.EndDate, out DateOnly endDateResult) ? endDateResult : default
             };

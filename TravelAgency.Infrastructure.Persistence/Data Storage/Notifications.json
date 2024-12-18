@@ -982,5 +982,89 @@
     "TemplateName": "hotelReservation",
     "Channel": "sms",
     "Id": 82
+  },
+  {
+    "UserId": 15,
+    "Recipient": "01007857951",
+    "Content": "Congratulations Mohamed Ashraf, Your Reservation Done Successfully",
+    "CreatedAt": "2024-12-17T21:17:15.7772207Z",
+    "SentAt": "2024-12-17T21:17:18.0459368Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 83
+  },
+  {
+    "UserId": 2,
+    "Recipient": "Anas123.@gmail.com",
+    "Content": "Dear Anas Alarby , your New Password is 5168b34a-8240-43e8-8c98-27e93b5b5297 .",
+    "CreatedAt": "2024-12-17T22:45:07.1560516Z",
+    "SentAt": "2024-12-17T22:45:08.5343752Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "email",
+    "Id": 84
+  },
+  {
+    "UserId": 2,
+    "Recipient": "01007851",
+    "Content": "Congratulations Anas Alarby, Your Reservation Done Successfully",
+    "CreatedAt": "2024-12-17T22:46:20.9998757Z",
+    "SentAt": "2024-12-17T22:46:23.8422799Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 85
+  },
+  {
+    "UserId": 2,
+    "Recipient": "01007851",
+    "Content": "Congratulations Anas Alarby, Your Reservation Done Successfully",
+    "CreatedAt": "2024-12-17T22:48:25.4900209Z",
+    "SentAt": "2024-12-17T22:48:27.3542424Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 86
+  },
+  {
+    "UserId": 2,
+    "Recipient": "01007851",
+    "Content": "Congratulations Anas Alarby, Your Reservation Done Successfully",
+    "CreatedAt": "2024-12-18T00:00:01.9705314Z",
+    "SentAt": "2024-12-18T00:00:03.2122978Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 87
+  },
+  {
+    "UserId": 2,
+    "Recipient": "01007851",
+    "Content": "Congratulations Anas Alarby, Your Reservation Done Successfully",
+    "CreatedAt": "2024-12-18T00:05:45.2984407Z",
+    "SentAt": "2024-12-18T00:05:46.3851662Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 88
+  },
+  {
+    "UserId": 2,
+    "Recipient": "01007851",
+    "Content": "Congratulations Anas Alarby, Your Reservation Done Successfully",
+    "CreatedAt": "2024-12-18T00:06:13.7550072Z",
+    "SentAt": "2024-12-18T00:06:15.511547Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 89
   }
 ]

@@ -25,12 +25,27 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
 
         public List<HotelReservation?> GetReservations(int hotelId, int roomId)
         {
-            return StorageManagement.GetAll().Where(hr => hr.RoomsId == roomId && hr.HotelId == hotelId).ToList()!;
+            return StorageManagement.GetAll().Where(hr => hr.RoomId == roomId && hr.HotelId == hotelId).ToList()!;
         }
 
         public void UpdateReservation(HotelReservation hotelReservation)
         {
             StorageManagement.Update(hotelReservation);
+        }
+
+        public List<HotelReservation?> GetUserReservations(int userId)
+        {
+            return StorageManagement.GetAll().Where(r => r.UserId == userId).ToList()!;
+        }
+
+        public void DeleteReservation(int reservationId)
+        {
+            StorageManagement.Delete(reservationId);
+        }
+
+        public HotelReservation GetReservation(int reservationId)
+        {
+            return StorageManagement.GetAll().FirstOrDefault(r => r.Id == reservationId)!;
         }
     }
 }

@@ -39,6 +39,12 @@ namespace TravelAgency.APIs
             builder.Services.AddScoped(typeof(IHotelReservationService), typeof(HotelReservationService));
             #endregion
 
+            #region User Profile Dependency Injection
+
+            builder.Services.AddScoped(typeof(IUserProfileService), typeof(UserProfileService));
+
+            #endregion
+
             builder.Services.AddScoped(typeof(IDataStorageInitializer), typeof(DataStorageInitializer));
             
             #endregion

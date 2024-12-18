@@ -11,8 +11,13 @@ namespace TravelAgency.Core.Domain.Repository_Contracts
     {
         void AddReservation(HotelReservation hotelReservation);
 
+        public HotelReservation GetReservation(int reservationId);
         public List<HotelReservation?> GetReservations(int hotelId, int roomId);
 
+        public List<HotelReservation?> GetUserReservations(int userId);
+
         public void UpdateReservation(HotelReservation hotelReservation);
+
+        public void DeleteReservation(int reservationId);
     }
 }
