@@ -26,9 +26,9 @@ namespace TravelAgency.APIs.Controllers
         }
 
         [HttpDelete("cancelReservation")]
-        public string CancelReservation(string? token, int reservationId)
+        public ActionResult<string> CancelReservation(string? token, int reservationId)
         {
-            return _profileService.CancelReservation(token, reservationId);
+            return Ok( _profileService.CancelReservation(token, reservationId));
         }
         [HttpPut("updateReservation")]
         public ActionResult<string> UpdateReservation(string? token , ReservationToChangeDto reservationDto)

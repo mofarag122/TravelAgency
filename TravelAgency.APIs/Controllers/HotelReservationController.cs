@@ -21,11 +21,28 @@ namespace TravelAgency.APIs.Controllers
             return Ok(_hotelReservationService.GetAllHotels(token));
         }
 
-
-        [HttpGet("getAllRooms")] // GET: api/getAllRooms
-        public ActionResult<List<HotelToReturnDto>> GetAllRooms(string? token , int id)
+        [HttpGet("getHotels")]// GET: api/getHotels
+        public ActionResult<List<HotelToReturnDto>> GetHotels(string? token ,[FromQuery] HotelSpecParmas hotelSpecs)
         {
-            return Ok(_hotelReservationService.GetRooms(token , id));
+            return Ok(_hotelReservationService.GetHotels(token, hotelSpecs));
+        }
+
+        [HttpGet("getHotel")] // GET : api/getHotel
+        public ActionResult<HotelToReturnDto> GetHotel(string? token, int id)
+        {
+            return Ok(_hotelReservationService.GetHotel(token, id));
+        }
+
+        [HttpGet("getRoom")] // GET: api/getRoom
+        public ActionResult<RoomToReturnDto> GetRoom(string? token , int hotelId , int roomId)
+        {
+            return Ok(_hotelReservationService.GetRoom(token, hotelId, roomId));
+        }
+
+        [HttpGet("getRooms")] // GET: api/getRooms
+        public ActionResult<List<HotelToReturnDto>> GetRooms(string? token , int hotelId , [FromQuery] RoomSpecParams roomSpecs)
+        {
+            return Ok(_hotelReservationService.GetRooms(token , hotelId , roomSpecs));
         }
 
         [HttpPost("reserveRoom")] // POST: api/reserveRoom
@@ -35,5 +52,6 @@ namespace TravelAgency.APIs.Controllers
         }
 
         
+
     }
 }
