@@ -124,7 +124,10 @@ namespace TravelAgency.Core.Application.Services
             if (reservation.StartDate <= DateOnly.FromDateTime(DateTime.UtcNow))
                 throw new BadRequest("Cancellation Not Allowed");
 
-            _hotelReservationRepository.DeleteReservation(reservationId);
+            if (reservation.UserId == authentication.UserId)
+                _hotelReservationRepository.DeleteReservation(reservationId);
+            else
+                throw new UnAutherized("You Are Not Autherized.");
           
 
             return "reservation has been Cancelled";

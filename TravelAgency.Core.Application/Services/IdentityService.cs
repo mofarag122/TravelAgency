@@ -41,6 +41,15 @@ namespace TravelAgency.Core.Application.Services
             if (_identityRepository.FindUserByUserName(userDto.UserName) is not null)
                 throw new BadRequest("UserName already Exists");
 
+            if(userDto.PhoneNumber is not null)
+            {
+                ;
+                if (_identityRepository.FindUserByPhoneNumber(userDto.PhoneNumber) is not null)
+                    throw new BadRequest("Phone Number already Exists.");
+            }
+
+           
+
             var passwordHasher = new PasswordHasher<User>();
             string hashedPassword = passwordHasher.HashPassword(null!, userDto.Password);
 

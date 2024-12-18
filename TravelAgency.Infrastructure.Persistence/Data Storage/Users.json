@@ -18,13 +18,41 @@
     "LastName": "Mahmoud",
     "UserName": "Anas Alarby",
     "Email": "Anas123.@gmail.com",
-    "PhoneNumber": "01007851",
-    "HashedPassword": "AQAAAAIAAYagAAAAEBbftQQOtJD/fADtSedMapZ/f7iUoo9KPwfBwuC65TH6BGGbvuXNnbf/qXVUj\u002BhawQ==",
+    "PhoneNumber": "0100787878787",
+    "HashedPassword": "AQAAAAIAAYagAAAAENMLLm\u002BvGD2GRqSVlmsrpmsaqo1sSs\u002BY25op9uCjekj0xF\u002Bd9m7pwKS/YMjcBvZ4CA==",
     "Address": {
       "Country": "Egypt",
       "City": "Ko Halen"
     },
     "Role": "user",
     "Id": 2
+  },
+  {
+    "FirstName": "Omar",
+    "LastName": "Hatem",
+    "UserName": "Omar Saloma",
+    "Email": "omar@gmail.com",
+    "PhoneNumber": "0100002561",
+    "HashedPassword": "AQAAAAIAAYagAAAAECDO04SQYlYOVU7I7EhCq5ISYqSR/\u002BxgvDXKqYt77FUCeuj3Cmgyo3wvXIEuHEYPgw==",
+    "Address": {
+      "Country": "Egypt",
+      "City": "Kom Halen"
+    },
+    "Role": "user",
+    "Id": 3
+  },
+  {
+    "FirstName": "Omar",
+    "LastName": "Hatem",
+    "UserName": "OmarSaloma",
+    "Email": "omar123@gmail.com",
+    "PhoneNumber": "1005512",
+    "HashedPassword": "AQAAAAIAAYagAAAAEEeAq0GFPJPCdY4/Ivvw91maZ7WMz44pUamN87yJr8mAkLCBoNT5FrubVNidwFGJ7A==",
+    "Address": {
+      "Country": "Egypt",
+      "City": "Kom Halen"
+    },
+    "Role": "user",
+    "Id": 4
   }
 ]

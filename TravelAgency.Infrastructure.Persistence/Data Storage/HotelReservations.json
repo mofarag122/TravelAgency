@@ -1,17 +1,6 @@
 [
   {
     "UserId": 2,
-    "HotelId": 1,
-    "RoomId": 1,
-    "StartDate": "2024-12-23",
-    "EndDate": "2024-12-28",
-    "ReservationDate": "2024-12-18T11:31:34.8777166Z",
-    "Cost": 600.0,
-    "Duration": 5,
-    "Id": 1
-  },
-  {
-    "UserId": 2,
     "HotelId": 2,
     "RoomId": 4,
     "StartDate": "2024-12-23",
@@ -53,5 +42,27 @@
     "Cost": 6120.0,
     "Duration": 51,
     "Id": 6
+  },
+  {
+    "UserId": 2,
+    "HotelId": 1,
+    "RoomId": 1,
+    "StartDate": "2025-01-03",
+    "EndDate": "2025-01-04",
+    "ReservationDate": "2024-12-18T18:51:21.0470962Z",
+    "Cost": 120.0,
+    "Duration": 1,
+    "Id": 7
+  },
+  {
+    "UserId": 2,
+    "HotelId": 1,
+    "RoomId": 1,
+    "StartDate": "2025-04-01",
+    "EndDate": "2025-05-01",
+    "ReservationDate": "2024-12-18T19:02:35.7031356Z",
+    "Cost": 3600.0,
+    "Duration": 30,
+    "Id": 8
   }
 ]
