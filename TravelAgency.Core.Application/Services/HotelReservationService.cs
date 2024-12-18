@@ -106,14 +106,20 @@ namespace TravelAgency.Core.Application.Services
             if (authentication is null)
                 throw new UnAutherized("You Are Not Authorized.");
 
+            if (DateTime.Parse(reservationDto.StartDate) < DateTime.UtcNow)
+                throw new BadRequest($"Start Date Must be from {DateTime.UtcNow}");
+
             if (DateOnly.Parse(reservationDto.StartDate) > DateOnly.Parse(reservationDto.EndDate))
                 throw new BadRequest("Start Date Must be Less Than End Date");
 
-            if (DateTime.Parse(reservationDto.StartDate) < DateTime.UtcNow)
-                throw new BadRequest($"Start Date Must be from {DateTime.UtcNow}");
-           
-            List<HotelReservation?> roomReservations = _reservationRepository.GetReservations(reservationDto.HotelId, reservationDto.RoomId);
+            Room room = _hotelRepository.GetRoomById(reservationDto.HotelId, reservationDto.RoomId);
 
+            if (room is null)
+                throw new NotFound("Room", $"Number {reservationDto.RoomId}");
+
+
+
+            List<HotelReservation?> roomReservations = _reservationRepository.GetReservations(reservationDto.HotelId, reservationDto.RoomId);         
             if (roomReservations != null)
             {
                 foreach (var roomReservation in roomReservations)
@@ -122,7 +128,7 @@ namespace TravelAgency.Core.Application.Services
                     if (DateOnly.TryParse(reservationDto.StartDate, out DateOnly startDate) &&
                         DateOnly.TryParse(reservationDto.EndDate, out DateOnly endDate))
                     {
-                        if (startDate <= roomReservation!.EndDate)
+                        if (!(endDate < roomReservation!.StartDate || startDate > roomReservation.EndDate))
                         {
                             return $"Room is reserved from {roomReservation.StartDate.ToString("yyyy-MM-dd")} to {roomReservation.EndDate.ToString("yyyy-MM-dd")}";
                         }
@@ -132,11 +138,7 @@ namespace TravelAgency.Core.Application.Services
             }
 
            
-            User? user = _identityRepository.FindUserById(authentication.UserId);
-            if (user is null)
-                throw new Exception("User not found.");
-
-           
+            User? user = _identityRepository.FindUserById(authentication.UserId);      
             Notification notification = new Notification()
             {
                 UserId = user.Id,
@@ -147,12 +149,7 @@ namespace TravelAgency.Core.Application.Services
             };
 
             _notificationRepository.AddNotificationAsync(notification);
-
-            Room room = _hotelRepository.GetRoomById(reservationDto.HotelId, reservationDto.RoomId);
-            if (room is null)
-                throw new Exception("Room not found.");
-
-            
+ 
             HotelReservation hotelReservation = new HotelReservation()
             {
                 UserId = user.Id,

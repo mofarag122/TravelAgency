@@ -78,7 +78,6 @@ namespace TravelAgency.Core.Application.Services
 
 
         }
-
         public  List<ReservationToReturnDto> ReturnAllReservation(string? token)
         {
             if (token is null)
@@ -107,8 +106,6 @@ namespace TravelAgency.Core.Application.Services
             return reservationDto;
 
         }
-
-
         public string CancelReservation(string? token, int reservationId)
         {
             if (token is null)
@@ -120,6 +117,9 @@ namespace TravelAgency.Core.Application.Services
                 throw new UnAutherized("You Are Not Autherized.");
 
             HotelReservation reservation =  _hotelReservationRepository.GetReservation(reservationId)!;
+
+            if (reservation is null)
+                throw new NotFound("reservation", $"Number {reservationId}");
 
             if (reservation.StartDate <= DateOnly.FromDateTime(DateTime.UtcNow))
                 throw new BadRequest("Cancellation Not Allowed");
@@ -141,30 +141,37 @@ namespace TravelAgency.Core.Application.Services
             if (authentication is null)
                 throw new UnAutherized("You Are Not Autherized.");
 
+            HotelReservation hotelReservation = _hotelReservationRepository.GetReservation(reservationDto.ReservationId);
 
+            if(hotelReservation is null)
+                throw new NotFound("reservation", $"Number {reservationDto.ReservationId}");
 
-            if (DateOnly.Parse(reservationDto.StartDate) <= DateOnly.FromDateTime(DateTime.UtcNow))
-                throw new BadRequest("Update Not Allowed");
 
             if (DateOnly.Parse(reservationDto.StartDate) > DateOnly.Parse(reservationDto.EndDate))
                 throw new BadRequest("Start Date Must be Less Than End Date");
 
-            if (DateTime.Parse(reservationDto.StartDate) < DateTime.UtcNow)
-                throw new BadRequest($"Start Date Must be from {DateTime.UtcNow}");
 
-            HotelReservation hotelReservation = _hotelReservationRepository.GetReservation(reservationDto.ReservationId);
+            if (hotelReservation.StartDate <= DateOnly.FromDateTime(DateTime.UtcNow))
+                throw new BadRequest("Update is Not Allowed.");
 
-            List<HotelReservation?> roomReservations = _hotelReservationRepository.GetReservations(hotelReservation.HotelId, hotelReservation.RoomId);
+            if (DateOnly.Parse(reservationDto.StartDate) <= DateOnly.FromDateTime(DateTime.UtcNow))
+                throw new BadRequest($"Start Date Must be from {DateOnly.FromDateTime(DateTime.UtcNow)}");
 
+
+            //List<HotelReservation?> roomReservations = _hotelReservationRepository.GetReservations(hotelReservation.HotelId, hotelReservation.RoomId);
+            List<HotelReservation?> roomReservations = _hotelReservationRepository.GetReservations(hotelReservation.HotelId, hotelReservation.RoomId)
+                                                                                         .Where(r => r!.Id != reservationDto.ReservationId) // Skip current reservation
+                                                                                         .ToList();
             if (roomReservations != null)
             {
                 foreach (var roomReservation in roomReservations)
                 {
+                   
 
                     if (DateOnly.TryParse(reservationDto.StartDate, out DateOnly startDate) &&
                         DateOnly.TryParse(reservationDto.EndDate, out DateOnly endDate))
                     {
-                        if (startDate <= roomReservation!.EndDate)
+                        if (!(endDate < roomReservation!.StartDate || startDate > roomReservation.EndDate))
                         {
                             return $"Room is reserved from {roomReservation.StartDate.ToString("yyyy-MM-dd")} to {roomReservation.EndDate.ToString("yyyy-MM-dd")}";
                         }
@@ -174,12 +181,10 @@ namespace TravelAgency.Core.Application.Services
             }
             
             Room room = _hotelRepository.GetRoomById(hotelReservation.HotelId , hotelReservation.RoomId);
-
             hotelReservation.StartDate = DateOnly.TryParse(reservationDto.StartDate, out DateOnly startDateResult) ? startDateResult : default;
             hotelReservation.EndDate = DateOnly.TryParse(reservationDto.EndDate, out DateOnly endDateResult) ? endDateResult : default;
             hotelReservation.Cost = room.PricePerNight * hotelReservation.Duration;
             _hotelReservationRepository.UpdateReservation(hotelReservation);
-
             return "reservation has been Updated";
 
         }

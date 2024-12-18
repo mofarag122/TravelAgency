@@ -56,9 +56,18 @@ namespace TravelAgency.APIs.Middlewares
                     Message = unauthorizedEx.Message // Custom error message
                 };
             }
+            else if(exception is NotFound notFoundEx)
+            {
+                statusCode = (int)HttpStatusCode.NotFound; // 401 for UnAuthorized exceptions
+                errorResponse = new
+                {
+                    StatusCode = statusCode,
+                    Message = notFoundEx.Message // Custom error message
+                };
+            }
             else if (exception is ApplicationException appEx)
             {
-                statusCode = (int)HttpStatusCode.BadRequest; // 400 for generic application exceptions
+                statusCode = (int)HttpStatusCode.BadRequest; 
                 errorResponse = new
                 {
                     StatusCode = statusCode,
