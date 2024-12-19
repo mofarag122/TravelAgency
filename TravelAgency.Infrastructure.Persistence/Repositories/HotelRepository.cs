@@ -25,11 +25,19 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
             StorageManagementForRooms  =  new _StorageManagement<Room>(RoomsFilePath);
         }
 
+
+        public void AddHotel(Hotel hotel)
+        {
+            StorageManagementForHotels.Add(hotel);
+        }
+        public void AddRoom(Room room)
+        {
+            StorageManagementForRooms.Add(room);
+        }
         public List<Hotel> GetAllHotels()
         {
             return StorageManagementForHotels.GetAll();
         }
-
         public List<Hotel> GetHotels(ISpecifications<Hotel> specifications)
         {
             List<Hotel> hotels = StorageManagementForHotels.GetAll();
@@ -39,7 +47,6 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
         {
             return StorageManagementForHotels.GetAll().FirstOrDefault(h => h.Id == id)!;
         }
-
         public List<Hotel> GetAllHotelsWithRooms()
         {
             List<Room> rooms = StorageManagementForRooms.GetAll();
@@ -52,18 +59,15 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
 
             return hotels;
         }
-
         public List<Room> GetRooms(int hotelId , ISpecifications<Room> specifications)
         {
             List<Room> rooms = StorageManagementForRooms.GetAll().Where(r => r.HotelId == hotelId).ToList();
             return _SpecificationsEvaluator<Room>.LambdaExpressionsBuilder(rooms, specifications).ToList(); 
         }
-
         public List<Room> GetRoomsById(int hotelId)
         {
             return StorageManagementForRooms.GetAll().Where(r => r.HotelId == hotelId).ToList();
         }
-
         public Room GetRoomById(int hotelId , int roomId)
         {
             return StorageManagementForRooms.GetAll().FirstOrDefault(r => r.Id == roomId && r.HotelId == hotelId)!;

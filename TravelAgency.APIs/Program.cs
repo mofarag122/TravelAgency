@@ -1,5 +1,6 @@
 
 using System.Text.Json;
+using TravelAgency.APIs.Extensions;
 using TravelAgency.APIs.Middlewares;
 using TravelAgency.Core.Application.Service_Contracts;
 using TravelAgency.Core.Application.Services;
@@ -22,6 +23,10 @@ namespace TravelAgency.APIs
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            var configuration = builder.Configuration;
+            builder.Services.AddSingleton<IConfiguration>(configuration);
+
 
             #region Identity Dependency Injection
             builder.Services.AddScoped(typeof(IIdentityRepository), typeof(IdentityRepository));
@@ -46,15 +51,20 @@ namespace TravelAgency.APIs
             #endregion
 
             builder.Services.AddScoped(typeof(IDataStorageInitializer), typeof(DataStorageInitializer));
-            
+
+            builder.Services.AddDirectoryBrowser();
             #endregion
 
 
             var app = builder.Build();
 
-           
+            #region Seeding Data
+            
+            app.InitializeData();   
+
+            #endregion
             #region Kestrel Pipelines Within a Request
-           
+
             app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 

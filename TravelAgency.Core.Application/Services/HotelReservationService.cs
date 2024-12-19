@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TravelAgency.Core.Application.DTOs.HotelReservation;
 using TravelAgency.Core.Application.Exceptions;
+using TravelAgency.Core.Application.Mapping;
 using TravelAgency.Core.Application.Service_Contracts;
 using TravelAgency.Core.Domain.Entities.Hotel_Reservation;
 using TravelAgency.Core.Domain.Entities.Identity;
@@ -23,13 +25,16 @@ namespace TravelAgency.Core.Application.Services
         private IAuthenticationRepository _authenticationRepository;
         private INotificationRepository _notificationRepository;
         private IIdentityRepository _identityRepository;    
-        public HotelReservationService(IHotelRepository hotelRepository, IHotelReservationRepository reservationRepository , IAuthenticationRepository authenticationRepository, INotificationRepository notificationRepository , IIdentityRepository identityRepository)
+
+        private IConfiguration _configuration;
+        public HotelReservationService(IHotelRepository hotelRepository, IHotelReservationRepository reservationRepository , IAuthenticationRepository authenticationRepository, INotificationRepository notificationRepository , IIdentityRepository identityRepository ,IConfiguration configuration)
         {
             _hotelRepository = hotelRepository;
             _reservationRepository = reservationRepository;
             _authenticationRepository = authenticationRepository;
             _notificationRepository = notificationRepository;
             _identityRepository = identityRepository;
+            _configuration = configuration;
         }
 
         public List<HotelToReturnDto> GetAllHotels(string? token)
@@ -64,7 +69,7 @@ namespace TravelAgency.Core.Application.Services
                 Name = hotel.Name,
                 Location = hotel.Location,
                 ImagePath = hotel.ImagePath,
-                Rooms  =  null,
+                Rooms = null,
             }).ToList();
 
             return hotelsDto;

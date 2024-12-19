@@ -1,102 +1,102 @@
 [
   {
-    "Id": 1,
     "Name": "Grand Luxury Hotel",
-    "ImagePath": "images/hotels/photo1.jpg",
+    "ImagePath": "TravelAgency.APIs\\wwwroot\\images\\hotels\\Sleep-siwa.jpg",
     "Location": {
       "Country": "USA",
       "City": "New York",
       "Region": "Manhattan"
-    }
+    },
+    "Id": 1
   },
   {
-    "Id": 2,
     "Name": "Sunset Paradise",
     "ImagePath": "images/hotels/sunset-paradise.jpg",
     "Location": {
       "Country": "Mexico",
       "City": "Cancun",
       "Region": "Hotel Zone"
-    }
+    },
+    "Id": 2
   },
   {
-    "Id": 3,
     "Name": "Mountain Retreat",
     "ImagePath": "images/hotels/mountain-retreat.jpg",
     "Location": {
       "Country": "Canada",
       "City": "Banff",
       "Region": "Alberta"
-    }
+    },
+    "Id": 3
   },
   {
-    "Id": 4,
     "Name": "Oceanview Resort",
     "ImagePath": "images/hotels/oceanview-resort.jpg",
     "Location": {
       "Country": "Australia",
       "City": "Sydney",
       "Region": "Bondi Beach"
-    }
+    },
+    "Id": 4
   },
   {
-    "Id": 5,
     "Name": "Safari Lodge",
     "ImagePath": "images/hotels/safari-lodge.jpg",
     "Location": {
       "Country": "South Africa",
       "City": "Kruger",
       "Region": "Mpumalanga"
-    }
+    },
+    "Id": 5
   },
   {
-    "Id": 6,
     "Name": "City Center Hotel",
     "ImagePath": "images/hotels/city-center-hotel.jpg",
     "Location": {
       "Country": "UK",
       "City": "London",
       "Region": "Westminster"
-    }
+    },
+    "Id": 6
   },
   {
-    "Id": 7,
     "Name": "Desert Oasis",
     "ImagePath": "images/hotels/desert-oasis.jpg",
     "Location": {
       "Country": "UAE",
       "City": "Dubai",
       "Region": "Palm Jumeirah"
-    }
+    },
+    "Id": 7
   },
   {
-    "Id": 8,
     "Name": "Lakefront Inn",
     "ImagePath": "images/hotels/lakefront-inn.jpg",
     "Location": {
       "Country": "Switzerland",
       "City": "Geneva",
       "Region": "Lakeside"
-    }
+    },
+    "Id": 8
   },
   {
-    "Id": 9,
     "Name": "Forest Haven",
     "ImagePath": "images/hotels/forest-haven.jpg",
     "Location": {
       "Country": "Germany",
       "City": "Black Forest",
-      "Region": "Baden-Württemberg"
-    }
+      "Region": "Baden-W\uFFFDrttemberg"
+    },
+    "Id": 9
   },
   {
-    "Id": 10,
     "Name": "Island Getaway",
     "ImagePath": "images/hotels/island-getaway.jpg",
     "Location": {
       "Country": "Maldives",
       "City": "Male",
       "Region": "North Atoll"
-    }
+    },
+    "Id": 10
   }
 ]
