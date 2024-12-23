@@ -64,5 +64,16 @@
     "Cost": 3600.0,
     "Duration": 30,
     "Id": 8
+  },
+  {
+    "UserId": 4,
+    "HotelId": 1,
+    "RoomId": 3,
+    "StartDate": "2025-08-01",
+    "EndDate": "2025-08-30",
+    "ReservationDate": "2024-12-23T16:40:08.3520746Z",
+    "Cost": 10150.0,
+    "Duration": 29,
+    "Id": 9
   }
 ]

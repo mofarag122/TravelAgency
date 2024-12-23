@@ -1,5 +1,8 @@
 
 using System.Text.Json;
+using ThirdParty.Events.BLL.Services;
+using ThirdParty.Events.Persistence.Repositories;
+using ThirdParty.Events.Presistense.Repositories;
 using TravelAgency.APIs.Extensions;
 using TravelAgency.APIs.Middlewares;
 using TravelAgency.Core.Application.Service_Contracts;
@@ -8,6 +11,7 @@ using TravelAgency.Core.Domain.Data_Storage_Initializer_Contract;
 using TravelAgency.Core.Domain.Repository_Contracts;
 using TravelAgency.Infrastructure.Persistence.Data_seeding;
 using TravelAgency.Infrastructure.Persistence.Repositories;
+using TravelAgency.Infrastructure.ThirdParty.Services;
 
 namespace TravelAgency.APIs
 {
@@ -48,6 +52,13 @@ namespace TravelAgency.APIs
 
             builder.Services.AddScoped(typeof(IUserProfileService), typeof(UserProfileService));
 
+            #endregion
+
+            #region Events Dependency Injection
+            builder.Services.AddScoped(typeof(IEventRepository), typeof(EventRepository));
+            builder.Services.AddScoped(typeof(IEventResevationRepository), typeof(EventResevationRepository));
+            builder.Services.AddScoped(typeof(IEventService), typeof(EventServices));
+            builder.Services.AddScoped(typeof(IEventAdapterService), typeof(EventAdapterService));
             #endregion
 
             builder.Services.AddScoped(typeof(IDataStorageInitializer), typeof(DataStorageInitializer));

@@ -16,6 +16,6 @@ namespace TravelAgency.Core.Application.Service_Contracts
 
         public RoomToReturnDto GetRoom(string? token, int hotelId, int roomId);
         public List<RoomToReturnDto> GetRooms(string? token, int hotelId, RoomSpecParams roomSpecs);
-        public string ReserveRoom(string? token, ReservationToCreateDto reservationDto);
+        public bool ReserveRoom(string? token, ReservationToCreateDto reservationDto);
     }
 }

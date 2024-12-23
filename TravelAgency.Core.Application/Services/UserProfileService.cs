@@ -31,8 +31,6 @@ namespace TravelAgency.Core.Application.Services
             _hotelReservationRepository = hotelReservationRepository;
             _hotelRepository = hotelRepository;
         }
-
-       
         public string ChangeProfile(string? token, UserToChangeProfileDto userProfileDto)
         {
             if (token is null)

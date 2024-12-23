@@ -1234,5 +1234,101 @@
     "TemplateName": "hotelReservation",
     "Channel": "sms",
     "Id": 103
+  },
+  {
+    "UserId": 4,
+    "Recipient": "1005512",
+    "Content": "Congratulations OmarSaloma, Your Reservation Done Successfully",
+    "CreatedAt": "2024-12-23T16:18:08.2459384Z",
+    "SentAt": "2024-12-23T16:18:09.3202718Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 104
+  },
+  {
+    "UserId": 4,
+    "Recipient": "1005512",
+    "Content": "Congratulations OmarSaloma, Your Reservation Done Successfully",
+    "CreatedAt": "2024-12-23T16:20:49.3021499Z",
+    "SentAt": "2024-12-23T16:20:50.5448011Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 105
+  },
+  {
+    "UserId": 4,
+    "Recipient": "1005512",
+    "Content": "Congratulations OmarSaloma, Your Reservation Done Successfully",
+    "CreatedAt": "2024-12-23T16:32:34.634609Z",
+    "SentAt": "2024-12-23T16:32:36.3519391Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 106
+  },
+  {
+    "UserId": 4,
+    "Recipient": "1005512",
+    "Content": "Congratulations OmarSaloma, Your Reservation Done Successfully",
+    "CreatedAt": "2024-12-23T16:33:05.2067181Z",
+    "SentAt": "2024-12-23T16:33:07.4953374Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 107
+  },
+  {
+    "UserId": 4,
+    "Recipient": "1005512",
+    "Content": "Congratulations OmarSaloma, Your Reservation Done Successfully",
+    "CreatedAt": "2024-12-23T16:34:05.2959412Z",
+    "SentAt": "2024-12-23T16:34:06.772572Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 108
+  },
+  {
+    "UserId": 4,
+    "Recipient": "1005512",
+    "Content": "Congratulations OmarSaloma, Your Reservation Done Successfully",
+    "CreatedAt": "2024-12-23T16:35:21.4275343Z",
+    "SentAt": "2024-12-23T16:35:24.1414938Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 109
+  },
+  {
+    "UserId": 4,
+    "Recipient": "1005512",
+    "Content": "Congratulations OmarSaloma, Your Reservation Done Successfully",
+    "CreatedAt": "2024-12-23T16:39:22.0117498Z",
+    "SentAt": "2024-12-23T16:39:24.5316706Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 110
+  },
+  {
+    "UserId": 4,
+    "Recipient": "1005512",
+    "Content": "Congratulations OmarSaloma, Your Reservation Done Successfully",
+    "CreatedAt": "2024-12-23T16:40:08.3310538Z",
+    "SentAt": "2024-12-23T16:40:09.5799256Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 111
   }
 ]

@@ -192,7 +192,7 @@ namespace TravelAgency.Core.Application.Services
             return roomsToReturnDto;
         }
 
-        public string ReserveRoom(string? token, ReservationToCreateDto reservationDto)
+        public bool ReserveRoom(string? token, ReservationToCreateDto reservationDto)
         {
        
             if (token is null)
@@ -226,7 +226,7 @@ namespace TravelAgency.Core.Application.Services
                     {
                         if (!(endDate < roomReservation!.StartDate || startDate > roomReservation.EndDate))
                         {
-                            return $"Room is reserved from {roomReservation.StartDate.ToString("yyyy-MM-dd")} to {roomReservation.EndDate.ToString("yyyy-MM-dd")}";
+                            throw new BadRequest( $"Room is reserved from {roomReservation.StartDate.ToString("yyyy-MM-dd")} to {roomReservation.EndDate.ToString("yyyy-MM-dd")}");
                         }
                     }
                 }
@@ -260,7 +260,7 @@ namespace TravelAgency.Core.Application.Services
             _reservationRepository.AddReservation(hotelReservation);
            
 
-            return "Your Reservation Done Successfully";
+            return true;
         }
   
 

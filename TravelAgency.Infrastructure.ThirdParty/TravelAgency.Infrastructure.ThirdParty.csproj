@@ -6,4 +6,18 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TravelAgency.Core.Application\TravelAgency.Core.Application.csproj" />
+    <ProjectReference Include="..\TravelAgency.Core.Domain\TravelAgency.Core.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ThirdParty.Events.BLL">
+      <HintPath>..\..\Third Party\ThirdParty.Events.BLL\bin\Debug\net8.0\ThirdParty.Events.BLL.dll</HintPath>
+    </Reference>
+    <Reference Include="ThirdParty.Events.Persistence">
+      <HintPath>..\..\Third Party\ThirdParty.Events.BLL\bin\Debug\net8.0\ThirdParty.Events.Persistence.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
