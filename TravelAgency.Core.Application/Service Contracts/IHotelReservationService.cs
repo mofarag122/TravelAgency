@@ -10,8 +10,12 @@ namespace TravelAgency.Core.Application.Service_Contracts
 {
     public interface IHotelReservationService
     {
-        List<HotelToReturnDto> GetAllHotels(string? token);
-        public List<RoomToReturnDto> GetRooms(string? token, int Hotelid);
-        public string ReserveRoom(string? token, ReservationToCreateDto reservationDto);
+        public List<HotelToReturnDto> GetAllHotels(string? token);
+        public List<HotelToReturnDto> GetHotels(string? token, HotelSpecParmas hotelSpecs);
+        public HotelToReturnDto GetHotel(string? token, int hotelId);
+
+        public RoomToReturnDto GetRoom(string? token, int hotelId, int roomId);
+        public List<RoomToReturnDto> GetRooms(string? token, int hotelId, RoomSpecParams roomSpecs);
+        public bool ReserveRoom(string? token, ReservationToCreateDto reservationDto);
     }
 }

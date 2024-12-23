@@ -1,198 +1,58 @@
 [
   {
-    "FirstName": "Ahmed",
-    "LastName": "Hassan",
-    "UserName": "ahmed.h",
-    "Email": "ahmed.hassan@example.com",
-    "PhoneNumber": null,
-    "HashedPassword": "hashed_password_1",
+    "FirstName": "Mohamed",
+    "LastName": "Ashraf",
+    "UserName": "Mohamed Ashraf",
+    "Email": "Mohamed123.@gmail.com",
+    "PhoneNumber": "01007857951",
+    "HashedPassword": "AQAAAAIAAYagAAAAEEvU0ZE4w6A1bg45dUwq\u002BbYuCOYfitLHRCGUIwRkXN5ALX8vj5kCjxsa03WlvJLpCQ==",
     "Address": {
       "Country": "Egypt",
-      "City": "Cairo"
+      "City": "Qalubia"
     },
     "Role": "user",
     "Id": 1
   },
   {
-    "FirstName": "Sara",
-    "LastName": "Ali",
-    "UserName": "sara.ali",
-    "Email": "sara.ali@example.com",
-    "PhoneNumber": null,
-    "HashedPassword": "hashed_password_2",
+    "FirstName": "Anas",
+    "LastName": "Mahmoud",
+    "UserName": "Anas Alarby",
+    "Email": "Anas123.@gmail.com",
+    "PhoneNumber": "0100787878787",
+    "HashedPassword": "AQAAAAIAAYagAAAAENMLLm\u002BvGD2GRqSVlmsrpmsaqo1sSs\u002BY25op9uCjekj0xF\u002Bd9m7pwKS/YMjcBvZ4CA==",
     "Address": {
       "Country": "Egypt",
-      "City": "Alexandria"
+      "City": "Ko Halen"
     },
-    "Role": "admin",
+    "Role": "user",
     "Id": 2
   },
   {
-    "FirstName": "Mohamed",
-    "LastName": "Ibrahim",
-    "UserName": "mohamed.i",
-    "Email": "mohamed.ibrahim@example.com",
-    "PhoneNumber": null,
-    "HashedPassword": "hashed_password_3",
+    "FirstName": "Omar",
+    "LastName": "Hatem",
+    "UserName": "Omar Saloma",
+    "Email": "omar@gmail.com",
+    "PhoneNumber": "0100002561",
+    "HashedPassword": "AQAAAAIAAYagAAAAECDO04SQYlYOVU7I7EhCq5ISYqSR/\u002BxgvDXKqYt77FUCeuj3Cmgyo3wvXIEuHEYPgw==",
     "Address": {
-      "Country": "Saudi Arabia",
-      "City": "Riyadh"
+      "Country": "Egypt",
+      "City": "Kom Halen"
     },
     "Role": "user",
     "Id": 3
   },
   {
-    "FirstName": "Layla",
-    "LastName": "Youssef",
-    "UserName": "layla.y",
-    "Email": "layla.youssef@example.com",
-    "PhoneNumber": null,
-    "HashedPassword": "hashed_password_4",
+    "FirstName": "Omar",
+    "LastName": "Hatem",
+    "UserName": "OmarSaloma",
+    "Email": "omar123@gmail.com",
+    "PhoneNumber": "1005512",
+    "HashedPassword": "AQAAAAIAAYagAAAAEEeAq0GFPJPCdY4/Ivvw91maZ7WMz44pUamN87yJr8mAkLCBoNT5FrubVNidwFGJ7A==",
     "Address": {
-      "Country": "UAE",
-      "City": "Dubai"
+      "Country": "Egypt",
+      "City": "Kom Halen"
     },
-    "Role": "admin",
+    "Role": "user",
     "Id": 4
-  },
-  {
-    "FirstName": "John",
-    "LastName": "Doe",
-    "UserName": "john_doe",
-    "Email": "john.doe@example.com",
-    "PhoneNumber": null,
-    "HashedPassword": "AQAAAAIAAYagAAAAECLU6WGDU1buRrUaZyb\u002BmOPe9Gxl0H7kcnj49ngdaeJrq3\u002BtIBZpz6PWZTFczWNB8g==",
-    "Address": {
-      "Country": "USA",
-      "City": "New York"
-    },
-    "Role": "user",
-    "Id": 5
-  },
-  {
-    "FirstName": "Mohamed",
-    "LastName": "Ashraf",
-    "UserName": "mo2004",
-    "Email": "mo@gmail.com",
-    "PhoneNumber": null,
-    "HashedPassword": "AQAAAAIAAYagAAAAEKZFQ5MpKUvnLHLturs3uFNRBHUStKNXS3XKD8C8HLWisig3B8wDfj7n4hCHG71e5w==",
-    "Address": {
-      "Country": "USA",
-      "City": "New York"
-    },
-    "Role": "user",
-    "Id": 6
-  },
-  {
-    "FirstName": "Mohamed",
-    "LastName": "Ashraf",
-    "UserName": "mo12004",
-    "Email": "mo1@gmail.com",
-    "PhoneNumber": null,
-    "HashedPassword": "AQAAAAIAAYagAAAAEC/94QE/MDl2VoAxcHWkwN16uLgcRazxgJi\u002BNEtiyDdOSJ5GZYUYCH2kS9Ak72\u002BKmQ==",
-    "Address": {
-      "Country": "USA",
-      "City": "New York"
-    },
-    "Role": "user",
-    "Id": 7
-  },
-  {
-    "FirstName": "Omar",
-    "LastName": "Hatem",
-    "UserName": "oHatem2000",
-    "Email": "O@gmail.com",
-    "PhoneNumber": null,
-    "HashedPassword": "AQAAAAIAAYagAAAAEA65Wt0O93XWqyi7Jc\u002B9o1OLtuIjpfFtTVUteVxwJx8GvmMtF8CQH2IxElGgAlha9A==",
-    "Address": {
-      "Country": "USA",
-      "City": "New York"
-    },
-    "Role": "user",
-    "Id": 8
-  },
-  {
-    "FirstName": "Omar",
-    "LastName": "Hatem",
-    "UserName": "ans204",
-    "Email": "ans@gmail.com",
-    "PhoneNumber": null,
-    "HashedPassword": "AQAAAAIAAYagAAAAEFWASvgho1rn2O3mfOK6f2\u002B5gWMW1Hzh5Ws6wCAq4ugPo4BpLVUqRJGM2D8VNYAQyQ==",
-    "Address": {
-      "Country": "USA",
-      "City": "New York"
-    },
-    "Role": "user",
-    "Id": 9
-  },
-  {
-    "FirstName": "Omar",
-    "LastName": "Hatem",
-    "UserName": "a204",
-    "Email": "a@gmail.com",
-    "PhoneNumber": null,
-    "HashedPassword": "AQAAAAIAAYagAAAAEIVxJYeOvnu63dcHWTGSkZC87J3QhUUo1P3OvSowk9F5hXGHQAyS0YZkmuqphMVuSw==",
-    "Address": {
-      "Country": "USA",
-      "City": "New York"
-    },
-    "Role": "user",
-    "Id": 10
-  },
-  {
-    "FirstName": "Omar",
-    "LastName": "Hatem",
-    "UserName": "mmm",
-    "Email": "m@gmail.com",
-    "PhoneNumber": null,
-    "HashedPassword": "AQAAAAIAAYagAAAAEM/lBEo4l6tONChirHtHnhoTYyApYdD5Di7HCSEVM9UmfSp6dq6PVw1lkXSu/AhrKg==",
-    "Address": {
-      "Country": "USA",
-      "City": "New York"
-    },
-    "Role": "user",
-    "Id": 11
-  },
-  {
-    "FirstName": "Mohamed",
-    "LastName": null,
-    "UserName": "MohamedAshraf",
-    "Email": "mohamedashraf35000.@gmail.com",
-    "PhoneNumber": "01007857951",
-    "HashedPassword": "AQAAAAIAAYagAAAAEK7fcunSOTKGV1VGqwEUKjmu/lk3FTCELN893xJHFX7RB7Cv8SdbhJhDGZjRHARXrg==",
-    "Address": {
-      "Country": "Egypt",
-      "City": "Cairo"
-    },
-    "Role": "user",
-    "Id": 12
-  },
-  {
-    "FirstName": "Mohamed",
-    "LastName": null,
-    "UserName": "MohamedAshraf##",
-    "Email": "mohamedashraf3500.@gmail.com",
-    "PhoneNumber": "01007857951",
-    "HashedPassword": "AQAAAAIAAYagAAAAEFsGgBNoi7a3lHSs9xt231NXyDBDXyARBL0FAuhyCWDsBSJxrnPP73ej\u002B8shVjzUIg==",
-    "Address": {
-      "Country": "Egypt",
-      "City": "Cairo"
-    },
-    "Role": "user",
-    "Id": 13
-  },
-  {
-    "FirstName": "Anas",
-    "LastName": null,
-    "UserName": "Anas##",
-    "Email": "Anas.@gmail.com",
-    "PhoneNumber": "0100622232",
-    "HashedPassword": "AQAAAAIAAYagAAAAEJuWo1HGTVxf/u5KDzwi8YDA3nqRVYsRmnAOdRwM2WQGxISYRZiTigsE4x\u002B1wT9lgw==",
-    "Address": {
-      "Country": "Egypt",
-      "City": "Cairo"
-    },
-    "Role": "user",
-    "Id": 14
   }
 ]

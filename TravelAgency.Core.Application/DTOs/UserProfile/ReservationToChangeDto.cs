@@ -5,15 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravelAgency.Core.Application.DTOs.HotelReservation
+namespace TravelAgency.Core.Application.DTOs.UserProfile
 {
-    public class ReservationToCreateDto
+    public class ReservationToChangeDto
     {
-        [Required(ErrorMessage = "Hotel Id is required.")]
-        public int HotelId { get; set; }
-
-        [Required(ErrorMessage = "Room Id is required.")]
-        public int RoomId { get; set; }
+        public int ReservationId { get; set; }
 
         [Required(ErrorMessage = "Start Date is required.")]
         [DataType(DataType.Date, ErrorMessage = "Start Date must be a valid date.")]
@@ -22,8 +18,5 @@ namespace TravelAgency.Core.Application.DTOs.HotelReservation
         [Required(ErrorMessage = "End Date is required.")]
         [DataType(DataType.Date, ErrorMessage = "End Date must be a valid date.")]
         public string EndDate { get; set; } = null!;
-
-
-      
     }
 }

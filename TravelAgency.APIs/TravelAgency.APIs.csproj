@@ -14,10 +14,20 @@
     <ProjectReference Include="..\TravelAgency.Core.Application\TravelAgency.Core.Application.csproj" />
     <ProjectReference Include="..\TravelAgency.Core.Domain\TravelAgency.Core.Domain.csproj" />
     <ProjectReference Include="..\TravelAgency.Infrastructure.Persistence\TravelAgency.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\TravelAgency.Infrastructure.ThirdParty\TravelAgency.Infrastructure.ThirdParty.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\images\rooms\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ThirdParty.Events.BLL">
+      <HintPath>..\..\Third Party\ThirdParty.Events.BLL\bin\Debug\net8.0\ThirdParty.Events.BLL.dll</HintPath>
+    </Reference>
+    <Reference Include="ThirdParty.Events.Persistence">
+      <HintPath>..\..\Third Party\ThirdParty.Events.BLL\bin\Debug\net8.0\ThirdParty.Events.Persistence.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
