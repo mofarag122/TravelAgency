@@ -14,7 +14,7 @@ namespace TravelAgency.Infrastructure.ThirdParty.Services
     {
         public List<EventToReturnDto> GetAllEvents(string? token);
 
-        public List<EventToReturnDto> RecommendEvents(string? token);
+        public List<EventToReturnDto> RecommendEvents(string? token ,IHotelRepository hotelRepository, IHotelReservationRepository reservationRepository);
         public List<EventToReturnDto> RecommendEvents(Location location, string startDate, string endDate);
         public List<EventReservationToReturnDto> GetUserReservations(string? token);
         public string ReserveEvent(string? token, int eventId,INotificationRepository notificationRepository, INotificationTemplateRepository notificationTemplateRepository, INotificationContentBuilder notificationContentBuilder, IIdentityRepository identityRepository);

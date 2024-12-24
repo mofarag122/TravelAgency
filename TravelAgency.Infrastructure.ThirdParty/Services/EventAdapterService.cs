@@ -7,6 +7,7 @@ using TravelAgency.Core.Domain.Entities.Identity;
 using ThirdParty.Events.Presistense.Entities;
 using TravelAgency.Core.Application.Builder.Notification_Builder;
 using TravelAgency.Core.Domain.Entities.Notification;
+using TravelAgency.Core.Application._Common;
 
 
 
@@ -16,40 +17,24 @@ namespace TravelAgency.Infrastructure.ThirdParty.Services
     {
         private IEventService _eventService;
         private IAuthenticationRepository _authenticationRepository;
-        private IHotelReservationRepository _hotelReservationRepository;
-        private IHotelRepository _hotelRepository;  
+       
 
-        public EventAdapterService(IEventService eventService , IAuthenticationRepository authenticationRepository ,  IHotelReservationRepository hotelReservationRepository , IHotelRepository hotelRepository)
+        public EventAdapterService(IEventService eventService , IAuthenticationRepository authenticationRepository)
         {
             _eventService = eventService;
             _authenticationRepository = authenticationRepository;
-            _hotelReservationRepository = hotelReservationRepository;
-            _hotelRepository = hotelRepository;
         }
         public List<EventToReturnDto> GetAllEvents(string? token)
         {
-            if (token is null)
-                throw new UnAutherized("You Are Not Autherized.");
-
-            Authentication authentication = _authenticationRepository.FindUserByToken(token) ?? null!;
-
-            if (authentication is null)
-                throw new UnAutherized("You Are Not Autherized.");
-
+            Authentication authentication = AuthenticationSchema.CheckAuthentication(_authenticationRepository, token);
             return _eventService.GetAllEvents();
         }
-        public List<EventToReturnDto> RecommendEvents(string? token)
+        public List<EventToReturnDto> RecommendEvents(string? token ,IHotelRepository hotelRepository , IHotelReservationRepository reservationRepository)
         {
 
-            if (token is null)
-                throw new UnAutherized("You Are Not Autherized.");
+            Authentication authentication = AuthenticationSchema.CheckAuthentication(_authenticationRepository, token);
 
-            Authentication authentication = _authenticationRepository.FindUserByToken(token) ?? null!;
-
-            if (authentication is null)
-                throw new UnAutherized("You Are Not Autherized.");
-
-            List<HotelReservation> userHotelReservations =  _hotelReservationRepository.GetUserReservations(authentication.UserId)!;
+            List<HotelReservation> userHotelReservations = reservationRepository.GetUserReservations(authentication.UserId)!;
            
             List<EventToReturnDto> recommendedEventsDto = new List<EventToReturnDto>();
 
@@ -58,7 +43,7 @@ namespace TravelAgency.Infrastructure.ThirdParty.Services
             {
                 if(userReservation.StartDate >= DateOnly.FromDateTime(DateTime.UtcNow))
                 {
-                    Hotel hotel = _hotelRepository.GetHotel(userReservation.HotelId);
+                    Hotel hotel = hotelRepository.GetHotel(userReservation.HotelId);
                     EventLocation hotelLocation = new EventLocation()
                     {
                         Country = hotel.Location.Country,
@@ -126,26 +111,12 @@ namespace TravelAgency.Infrastructure.ThirdParty.Services
         }
         public List<EventReservationToReturnDto> GetUserReservations(string? token)
         {
-            if (token is null)
-                throw new UnAutherized("You Are Not Autherized.");
-
-            Authentication authentication = _authenticationRepository.FindUserByToken(token) ?? null!;
-
-            if (authentication is null)
-                throw new UnAutherized("You Are Not Autherized.");
-
+            Authentication authentication = AuthenticationSchema.CheckAuthentication(_authenticationRepository, token);
             return _eventService.GetUserReservations(authentication.UserId);
         }
         public string ReserveEvent(string? token , int eventId ,INotificationRepository notificationRepository, INotificationTemplateRepository notificationTemplateRepository, INotificationContentBuilder notificationContentBuilder , IIdentityRepository identityRepository)
         {
-            if (token is null)
-                throw new UnAutherized("You Are Not Autherized.");
-
-            Authentication authentication = _authenticationRepository.FindUserByToken(token) ?? null!;
-
-            if (authentication is null)
-                throw new UnAutherized("You Are Not Autherized.");
-
+            Authentication authentication = AuthenticationSchema.CheckAuthentication(_authenticationRepository, token);
             User user = identityRepository.FindUserById(authentication.UserId);
 
           
@@ -180,18 +151,10 @@ namespace TravelAgency.Infrastructure.ThirdParty.Services
                     throw new BadRequest(ex.Message);
                 }
              
-        }
-            
+        }      
         public string CancelReservation(string? token, int reservationId)
         {
-            if (token is null)
-                throw new UnAutherized("You Are Not Autherized.");
-
-            Authentication authentication = _authenticationRepository.FindUserByToken(token) ?? null!;
-
-            if (authentication is null)
-                throw new UnAutherized("You Are Not Autherized.");
-
+            Authentication authentication = AuthenticationSchema.CheckAuthentication(_authenticationRepository, token);
             return _eventService.CancelReservation(reservationId);
         }
     }

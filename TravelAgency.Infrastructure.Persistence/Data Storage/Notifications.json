@@ -1498,5 +1498,53 @@
     "TemplateName": "hotelReservation",
     "Channel": "sms",
     "Id": 125
+  },
+  {
+    "UserId": 6,
+    "Recipient": "010515625",
+    "Content": "Congratulations Mohmd Farag , You have reserved Room 4 in Sunset Paradise ",
+    "CreatedAt": "2024-12-24T16:12:47.4202948Z",
+    "SentAt": "2024-12-24T16:12:49.5371285Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 126
+  },
+  {
+    "UserId": 6,
+    "Recipient": "010515625",
+    "Content": "Congratulations Mohmd Farag , You have reserved Room 1 in Grand Luxury Hotel ",
+    "CreatedAt": "2024-12-24T16:24:26.1244947Z",
+    "SentAt": "2024-12-24T16:24:28.731327Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 127
+  },
+  {
+    "UserId": 6,
+    "Recipient": "010515625",
+    "Content": "Congratulations Mohmd Farag , You have reserved Room 1 in Grand Luxury Hotel ",
+    "CreatedAt": "2024-12-24T16:26:08.2390688Z",
+    "SentAt": "2024-12-24T16:26:10.1310879Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 128
+  },
+  {
+    "UserId": 6,
+    "Recipient": "010515625",
+    "Content": "Congratulations Mohmd Farag , You have reserved Room 1 in Grand Luxury Hotel ",
+    "CreatedAt": "2024-12-24T16:26:34.091649Z",
+    "SentAt": "2024-12-24T16:26:35.2363307Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 129
   }
 ]
