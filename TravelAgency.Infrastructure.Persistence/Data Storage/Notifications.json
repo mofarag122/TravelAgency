@@ -1378,5 +1378,113 @@
     "TemplateName": "resetPassword",
     "Channel": "email",
     "Id": 115
+  },
+  {
+    "UserId": 1,
+    "Recipient": "Andro@gmail.com",
+    "Content": "Dear AndroMakram , your New Password is 8ee2fa09-233e-4885-9ab5-b30fea148e22 .",
+    "CreatedAt": "2024-12-24T11:52:28.6036431Z",
+    "SentAt": "2024-12-24T11:52:31.4142041Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "email",
+    "Id": 116
+  },
+  {
+    "UserId": 1,
+    "Recipient": "Andro@gmail.com",
+    "Content": "Dear AndroMakram, Your New Password is 8e74f6e6-39ae-4ca5-9428-88d75cbc9054",
+    "CreatedAt": "2024-12-24T13:29:08.509516Z",
+    "SentAt": "2024-12-24T13:29:09.7466728Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "email",
+    "Id": 117
+  },
+  {
+    "UserId": 1,
+    "Recipient": "Andro@gmail.com",
+    "Content": " New Password a76866bb-2c45-4fff-a181-7fc9da44d236 for AndroMakram",
+    "CreatedAt": "2024-12-24T13:44:02.586945Z",
+    "SentAt": "2024-12-24T13:44:04.340524Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "email",
+    "Id": 118
+  },
+  {
+    "UserId": 6,
+    "Recipient": "010515625",
+    "Content": "Congratulations Mohmd Farag , You have reserved Room 3 in Grand Luxury Hotel ",
+    "CreatedAt": "2024-12-24T14:28:20.4149805Z",
+    "SentAt": "2024-12-24T14:59:15.2310028Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 119
+  },
+  {
+    "UserId": 6,
+    "Recipient": "010515625",
+    "Content": "Congratulations Mohmd Farag , You have reserved Room 4 in Sunset Paradise ",
+    "CreatedAt": "2024-12-24T15:01:02.9029738Z",
+    "SentAt": "2024-12-24T15:01:04.7203004Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 120
+  },
+  {
+    "UserId": 6,
+    "Recipient": "010515625",
+    "Content": "Congratulations Mohmd Farag , You have reserved Room {RoomId} in {HotelName} ",
+    "CreatedAt": "2024-12-24T15:08:05.5813463Z",
+    "SentAt": "2024-12-24T15:08:07.5285764Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 121
+  },
+  {
+    "UserId": 6,
+    "Recipient": "010515625",
+    "Content": "Congratulations Mohmd Farag , You have reserved Room {RoomId} in {HotelName} ",
+    "CreatedAt": "2024-12-24T15:08:41.1473599Z",
+    "SentAt": "2024-12-24T15:08:42.6993582Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 122
+  },
+  {
+    "UserId": 6,
+    "Recipient": "010515625",
+    "Content": "Congratulations Mohmd Farag , You have reserved an event",
+    "CreatedAt": "2024-12-24T15:08:56.2962235Z",
+    "SentAt": "2024-12-24T15:08:57.6108806Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 123
+  },
+  {
+    "UserId": 6,
+    "Recipient": "010515625",
+    "Content": "Congratulations Mohmd Farag , You have reserved an event",
+    "CreatedAt": "2024-12-24T15:10:53.10464Z",
+    "SentAt": "2024-12-24T15:10:54.347212Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 124
   }
 ]

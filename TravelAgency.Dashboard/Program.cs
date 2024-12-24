@@ -15,8 +15,10 @@ namespace TravelAgency.Dashboard
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            var configuration = builder.Configuration;
+            builder.Services.AddSingleton<IConfiguration>(configuration);
             builder.Services.AddScoped(typeof(INotificationStatisticsRepository), typeof(NotificationStatisticsRepository));
+            builder.Services.AddScoped(typeof(INotificationTemplateRepository), typeof(NotificationTemplateRepository));
 
             var app = builder.Build();
 

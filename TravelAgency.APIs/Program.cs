@@ -5,6 +5,7 @@ using ThirdParty.Events.Persistence.Repositories;
 using ThirdParty.Events.Presistense.Repositories;
 using TravelAgency.APIs.Extensions;
 using TravelAgency.APIs.Middlewares;
+using TravelAgency.Core.Application.Builder.Notification_Builder;
 using TravelAgency.Core.Application.Service_Contracts;
 using TravelAgency.Core.Application.Services;
 using TravelAgency.Core.Domain.Data_Storage_Initializer_Contract;
@@ -40,6 +41,8 @@ namespace TravelAgency.APIs
 
             #region Notification Dependency Injection
             builder.Services.AddScoped(typeof(INotificationRepository), typeof(NotificationRepository));
+            builder.Services.AddScoped(typeof(INotificationTemplateRepository), typeof(NotificationTemplateRepository));
+            builder.Services.AddScoped(typeof(INotificationContentBuilder), typeof(NotificationContentBuilder));
             #endregion
 
             #region Hotel Reservation Dependency Injection
@@ -64,7 +67,6 @@ namespace TravelAgency.APIs
             builder.Services.AddScoped(typeof(IDataStorageInitializer), typeof(DataStorageInitializer));
             builder.Services.AddDirectoryBrowser();
             #endregion
-
 
             var app = builder.Build();
 

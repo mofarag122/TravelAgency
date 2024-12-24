@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TravelAgency.APIs\TravelAgency.APIs.csproj" />
     <ProjectReference Include="..\TravelAgency.Core.Domain\TravelAgency.Core.Domain.csproj" />
     <ProjectReference Include="..\TravelAgency.Infrastructure.Persistence\TravelAgency.Infrastructure.Persistence.csproj" />
   </ItemGroup>

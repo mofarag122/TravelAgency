@@ -75,5 +75,27 @@
     "Cost": 10150.0,
     "Duration": 29,
     "Id": 9
+  },
+  {
+    "UserId": 6,
+    "HotelId": 1,
+    "RoomId": 3,
+    "StartDate": "2025-09-01",
+    "EndDate": "2025-09-30",
+    "ReservationDate": "2024-12-24T14:28:20.4297378Z",
+    "Cost": 10150.0,
+    "Duration": 29,
+    "Id": 10
+  },
+  {
+    "UserId": 6,
+    "HotelId": 2,
+    "RoomId": 4,
+    "StartDate": "2025-09-01",
+    "EndDate": "2025-09-30",
+    "ReservationDate": "2024-12-24T15:01:02.9310925Z",
+    "Cost": 2900.0,
+    "Duration": 29,
+    "Id": 11
   }
 ]

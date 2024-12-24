@@ -5,7 +5,7 @@
     "UserName": "AndroMakram",
     "Email": "Andro@gmail.com",
     "PhoneNumber": "25253535653",
-    "HashedPassword": "AQAAAAIAAYagAAAAEHviKr33fNx\u002BTK2XxwM2gTeWE2qEspluzivfCwOo1Luxgh61IJatI1pQnJftTYdGRA==",
+    "HashedPassword": "AQAAAAIAAYagAAAAEOvUZs4TT4Rt\u002Bo8gS\u002BPlOC9tb3ZfxU/zJ6DRMdnnPYyFUOgqa\u002BJwWoUAu0/pkEpTXQ==",
     "Address": {
       "Country": "Egypt",
       "City": "Giza"
@@ -68,5 +68,19 @@
     },
     "Role": "user",
     "Id": 5
+  },
+  {
+    "FirstName": "AyHaga",
+    "LastName": "Farag",
+    "UserName": "Mohmd Farag",
+    "Email": "Mohad@gmail.com",
+    "PhoneNumber": "010515625",
+    "HashedPassword": "AQAAAAIAAYagAAAAEJSxR3EinL5ZAVVZ8r0RDDsvjFrZtPiARReunMUmB\u002BeKILlLlr6CAk6QrnlS6xR3zQ==",
+    "Address": {
+      "Country": "Egypt",
+      "City": "Giza"
+    },
+    "Role": "user",
+    "Id": 6
   }
 ]

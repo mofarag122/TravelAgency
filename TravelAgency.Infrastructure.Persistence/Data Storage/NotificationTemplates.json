@@ -1,0 +1,22 @@
+[
+  {
+    "TemplateContent": "Dear {UserName}, Your New Password is {NewPassword}",
+    "Template": "resetPassword",
+    "Id": 1
+  },
+  {
+    "TemplateContent": " New Password {NewPassword} for {UserName}",
+    "Template": "resetPassword",
+    "Id": 2
+  },
+  {
+    "TemplateContent": "Congratulations {UserName} , You have reserved Room {RoomId} in {HotelName} ",
+    "Template": "hotelReservation",
+    "Id": 3
+  },
+  {
+    "TemplateContent": "Congratulations {UserName} , You have reserved an event",
+    "Template": "eventReservation",
+    "Id": 4
+  }
+]

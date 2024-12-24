@@ -5,6 +5,9 @@ using TravelAgency.Core.Application.Exceptions;
 using TravelAgency.Core.Domain.Repository_Contracts;
 using TravelAgency.Core.Domain.Entities.Identity;
 using ThirdParty.Events.Presistense.Entities;
+using TravelAgency.Core.Application.Builder.Notification_Builder;
+using TravelAgency.Core.Domain.Entities.Notification;
+
 
 
 namespace TravelAgency.Infrastructure.ThirdParty.Services
@@ -35,7 +38,6 @@ namespace TravelAgency.Infrastructure.ThirdParty.Services
 
             return _eventService.GetAllEvents();
         }
-
         public List<EventToReturnDto> RecommendEvents(string? token)
         {
 
@@ -122,7 +124,6 @@ namespace TravelAgency.Infrastructure.ThirdParty.Services
 
             return recommendedEventsDto;
         }
-
         public List<EventReservationToReturnDto> GetUserReservations(string? token)
         {
             if (token is null)
@@ -135,8 +136,7 @@ namespace TravelAgency.Infrastructure.ThirdParty.Services
 
             return _eventService.GetUserReservations(authentication.UserId);
         }
-
-        public string ReserveEvent(string? token , int eventId)
+        public string ReserveEvent(string? token , int eventId ,INotificationRepository notificationRepository, INotificationTemplateRepository notificationTemplateRepository, INotificationContentBuilder notificationContentBuilder , IIdentityRepository identityRepository)
         {
             if (token is null)
                 throw new UnAutherized("You Are Not Autherized.");
@@ -146,9 +146,42 @@ namespace TravelAgency.Infrastructure.ThirdParty.Services
             if (authentication is null)
                 throw new UnAutherized("You Are Not Autherized.");
 
-            return _eventService.ReserveEvent(eventId , authentication.UserId);   
-        }
+            User user = identityRepository.FindUserById(authentication.UserId);
 
+          
+                try
+                {
+                    if (_eventService.ReserveEvent(eventId, authentication.UserId))
+                    {
+                        NotificationTemplate notificationTemplate = notificationTemplateRepository.GetNotificationByType(Templates.eventReservation);
+                        Dictionary<string, string> placeholders = new Dictionary<string, string>()
+                        {
+                            {"UserName",user.UserName},
+                        };
+                        string content = notificationContentBuilder.BuildContent(notificationTemplate, placeholders);
+                        Notification notification = new Notification()
+                        {
+                            UserId = user.Id,
+                            Recipient = user.PhoneNumber ?? user.Email,
+                            Content = content,
+                            TemplateName = Templates.hotelReservation,
+                            Channel = user.PhoneNumber != null ? Channels.sms : Channels.email,
+                        };
+                        notificationRepository.AddNotificationAsync(notification);
+
+                        return "Reservation Done Successfully.";
+                    }
+                    else
+                         return "Event Expired.";
+                }
+                catch (Exception ex)
+                {
+
+                    throw new BadRequest(ex.Message);
+                }
+             
+        }
+            
         public string CancelReservation(string? token, int reservationId)
         {
             if (token is null)

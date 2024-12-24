@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ThirdParty.Events.BLL.DTOs;
+using TravelAgency.Core.Application.Builder.Notification_Builder;
 using TravelAgency.Core.Application.DTOs.HotelReservation;
 using TravelAgency.Core.Application.Service_Contracts;
 using TravelAgency.Core.Domain.Entities.Hotel_Reservation;
+using TravelAgency.Core.Domain.Repository_Contracts;
 using TravelAgency.Infrastructure.ThirdParty.Services;
 
 namespace TravelAgency.APIs.Controllers
@@ -49,9 +51,9 @@ namespace TravelAgency.APIs.Controllers
         }
 
         [HttpPost("reserveRoom")] // POST: api/reserveRoom
-        public ActionResult<List<EventToReturnDto>> Reserve(string? token ,[FromBody] ReservationToCreateDto reservationDto)
+        public ActionResult<List<EventToReturnDto>> Reserve(string? token ,[FromBody] ReservationToCreateDto reservationDto , [FromServices] INotificationRepository notificationRepository , [FromServices] INotificationTemplateRepository notificationTemplateRepository , [FromServices] INotificationContentBuilder notificationContentBuilder)
         {
-            if (_hotelReservationService.ReserveRoom(token, reservationDto))
+            if (_hotelReservationService.ReserveRoom(token, reservationDto , notificationRepository , notificationTemplateRepository , notificationContentBuilder))
             {
                 var hotelDto = _hotelReservationService.GetHotel(token, reservationDto.HotelId);
                 return Ok(_eventAdapterService.RecommendEvents(hotelDto.Location, reservationDto.StartDate, reservationDto.EndDate));

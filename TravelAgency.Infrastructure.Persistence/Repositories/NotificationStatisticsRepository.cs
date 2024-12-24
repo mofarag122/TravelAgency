@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,19 +12,17 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
 {
     public class NotificationStatisticsRepository : INotificationStatisticsRepository
     {
-        private _StorageManagement<Notification> StorageManagement;
-
-        private const string FilePath = "D:\\SDA Project\\TravelAgency\\TravelAgency.Infrastructure.Persistence\\Data Storage\\Notifications.json";
-
-        public NotificationStatisticsRepository()
+        private _StorageManagement<Notification> _StorageManagement;
+        public NotificationStatisticsRepository(IConfiguration configuration)
         {
-            StorageManagement = new _StorageManagement<Notification>(FilePath);
+            string filePath = configuration["FileStorage:NotificationsFilePath"]!;
+            _StorageManagement = new _StorageManagement<Notification>(filePath);
         }
 
 
         public string MostSentEmail()
         {
-            var mostSentEmail = StorageManagement.GetAll()
+            var mostSentEmail = _StorageManagement.GetAll()
                                                  .Where(n => n.Channel == Channels.email && n.IsSent == true)
                                                  .GroupBy(n => n.Recipient)
                                                  .OrderByDescending(group => group.Count())
@@ -31,11 +30,10 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
 
             return mostSentEmail?.Key ?? "No emails sent";
         }
-
         public string MostSentNotificationTemplate()
         {
            
-                var mostSentTemplate = StorageManagement.GetAll()
+                var mostSentTemplate = _StorageManagement.GetAll()
                                                         .Where(n => n.IsSent == true)
                                                         .GroupBy(n => n.TemplateName)
                                                         .OrderByDescending(group => group.Count())
@@ -44,10 +42,9 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
                 return mostSentTemplate?.Key.ToString() ?? "No templates sent";  
             
         }
-
         public string MostSentSMS()
         {
-            var mostSentSMS = StorageManagement.GetAll()
+            var mostSentSMS = _StorageManagement.GetAll()
                                                .Where(n => n.Channel == Channels.sms && n.IsSent == true)
                                                .GroupBy(n => n.Recipient)
                                                .OrderByDescending(group => group.Count())
@@ -55,20 +52,17 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
 
             return mostSentSMS?.Key ?? "No SMS sent";
         }
-
         public int NumberOfSuccessfulEmailNotifications()
         {
-            return StorageManagement.GetAll().Where(n => n.Channel == Channels.email && n.IsSent == true).Count();
+            return _StorageManagement.GetAll().Where(n => n.Channel == Channels.email && n.IsSent == true).Count();
         }
-
         public int NumberOfSuccessfulSMSNotifications()
         {
-            return StorageManagement.GetAll().Where(n => n.Channel == Channels.sms && n.IsSent == true).Count();
+            return _StorageManagement.GetAll().Where(n => n.Channel == Channels.sms && n.IsSent == true).Count();
         }
-
         public Dictionary<string, int> NumberOfFailedNotificationsWithReasons()
         {
-            return StorageManagement.GetAll()
+            return _StorageManagement.GetAll()
                                     .Where(n => n.IsSent == false)
                                     .GroupBy(n => n.FailureReason!)
                                     .ToDictionary(group => group.Key, group => group.Count());

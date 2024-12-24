@@ -1,13 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using Microsoft.Extensions.Configuration;
+using TravelAgency.Core.Application.Builder.Notification_Builder;
 using TravelAgency.Core.Application.DTOs.HotelReservation;
 using TravelAgency.Core.Application.Exceptions;
-using TravelAgency.Core.Application.Mapping;
 using TravelAgency.Core.Application.Service_Contracts;
 using TravelAgency.Core.Domain.Entities.Hotel_Reservation;
 using TravelAgency.Core.Domain.Entities.Identity;
@@ -22,19 +17,14 @@ namespace TravelAgency.Core.Application.Services
     {
         private IHotelRepository _hotelRepository;
         private IHotelReservationRepository _reservationRepository;
-        private IAuthenticationRepository _authenticationRepository;
-        private INotificationRepository _notificationRepository;
-        private IIdentityRepository _identityRepository;    
-
-        private IConfiguration _configuration;
-        public HotelReservationService(IHotelRepository hotelRepository, IHotelReservationRepository reservationRepository , IAuthenticationRepository authenticationRepository, INotificationRepository notificationRepository , IIdentityRepository identityRepository ,IConfiguration configuration)
+        private IAuthenticationRepository _authenticationRepository;    
+        private IIdentityRepository _identityRepository;
+        public HotelReservationService(IHotelRepository hotelRepository, IHotelReservationRepository reservationRepository, IAuthenticationRepository authenticationRepository, IIdentityRepository identityRepository, IConfiguration configuration)
         {
             _hotelRepository = hotelRepository;
             _reservationRepository = reservationRepository;
             _authenticationRepository = authenticationRepository;
-            _notificationRepository = notificationRepository;
             _identityRepository = identityRepository;
-            _configuration = configuration;
         }
 
         public List<HotelToReturnDto> GetAllHotels(string? token)
@@ -75,7 +65,6 @@ namespace TravelAgency.Core.Application.Services
             return hotelsDto;
 
         }
-
         public HotelToReturnDto GetHotel( string? token, int hotelId)
         {
             if (token is null)
@@ -102,7 +91,6 @@ namespace TravelAgency.Core.Application.Services
             return hotelToReturnDto;    
 
         }
-
         public List<HotelToReturnDto> GetHotels(string? token , HotelSpecParmas hotelSpecs)
         {
 
@@ -133,7 +121,6 @@ namespace TravelAgency.Core.Application.Services
             return hotelsDto;
 
         }
-
         public RoomToReturnDto GetRoom(string? token , int hotelId , int roomId)
         {
             if (token is null)
@@ -191,8 +178,7 @@ namespace TravelAgency.Core.Application.Services
 
             return roomsToReturnDto;
         }
-
-        public bool ReserveRoom(string? token, ReservationToCreateDto reservationDto)
+        public bool ReserveRoom(string? token, ReservationToCreateDto reservationDto , INotificationRepository notificationRepository , INotificationTemplateRepository notificationTemplateRepository , INotificationContentBuilder notificationContentBuilder)
         {
        
             if (token is null)
@@ -233,18 +219,28 @@ namespace TravelAgency.Core.Application.Services
                 
             }
 
-           
-            User? user = _identityRepository.FindUserById(authentication.UserId);      
+
+            Hotel hotel = _hotelRepository.GetHotel(reservationDto.HotelId);
+            User? user = _identityRepository.FindUserById(authentication.UserId);
+
+            NotificationTemplate notificationTemplate = notificationTemplateRepository.GetNotificationByType(Templates.hotelReservation);
+            Dictionary<string, string> placeholders = new Dictionary<string, string>()
+            {
+                {"UserName",user.UserName},
+                {"RoomId", reservationDto.RoomId.ToString()},
+                {"HotelName" , hotel.Name}
+            };
+            string content = notificationContentBuilder.BuildContent(notificationTemplate, placeholders);
             Notification notification = new Notification()
             {
                 UserId = user.Id,
                 Recipient = user.PhoneNumber ?? user.Email,
-                Content = $"Congratulations {user.UserName}, Your Reservation Done Successfully",
+                Content = content,
                 TemplateName = Templates.hotelReservation,
                 Channel = user.PhoneNumber != null ? Channels.sms : Channels.email,
             };
 
-            _notificationRepository.AddNotificationAsync(notification);
+            notificationRepository.AddNotificationAsync(notification);
  
             HotelReservation hotelReservation = new HotelReservation()
             {

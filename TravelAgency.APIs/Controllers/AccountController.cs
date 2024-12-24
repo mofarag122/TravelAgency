@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TravelAgency.Core.Application.Builder.Notification_Builder;
 using TravelAgency.Core.Application.DTOs.Identity;
 using TravelAgency.Core.Application.DTOs.Notification;
 using TravelAgency.Core.Application.Service_Contracts;
 using TravelAgency.Core.Domain.Entities.Identity;
+using TravelAgency.Core.Domain.Repository_Contracts;
 
 namespace TravelAgency.APIs.Controllers
 {
@@ -29,9 +31,9 @@ namespace TravelAgency.APIs.Controllers
         }
         
         [HttpGet("reset")] // GET: /api/Account/reset
-        public async Task<ActionResult<NotificationToResetPasswordDto>> ResetPassword(UserToResetPasswordDto userDto)
+        public async Task<ActionResult<NotificationToResetPasswordDto>> ResetPassword(UserToResetPasswordDto userDto , [FromServices]INotificationRepository notificationRepository, [FromServices] INotificationTemplateRepository notificationTemplateRepository , [FromServices] INotificationContentBuilder notificationContentBuilder) 
         {
-            return Ok(await _identityService.ResetPassword(userDto));
+            return Ok(await _identityService.ResetPassword(userDto , notificationRepository , notificationTemplateRepository , notificationContentBuilder));
         }
 
         [HttpPost("logout")] // POST: /api/Account/logout

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using TravelAgency.Core.Application._Common;
+using TravelAgency.Core.Application.Builder.Notification_Builder;
 using TravelAgency.Core.Application.Chain_Of_Responsibility;
 using TravelAgency.Core.Application.Chain_Of_Responsibility.Identity;
 using TravelAgency.Core.Application.DTOs.Identity;
@@ -16,14 +18,12 @@ namespace TravelAgency.Core.Application.Services
     {
         private IIdentityRepository _identityRepository;
         private IAuthenticationRepository _authenticationRepository;
-        private INotificationRepository _notificationRepository;
-        public IdentityService(IIdentityRepository identityRepository , IAuthenticationRepository authenticationRepository, INotificationRepository notificationRepository)
+        public IdentityService(IIdentityRepository identityRepository, IAuthenticationRepository authenticationRepository)
         {
             _identityRepository = identityRepository;
             _authenticationRepository = authenticationRepository;
-            _notificationRepository = notificationRepository;
         }
-       
+
         public User Register(UserToRegisterDto userDto)
         {
             // To Register We Follow These Business Rules:
@@ -76,7 +76,7 @@ namespace TravelAgency.Core.Application.Services
 
            
         }
-        public async Task<NotificationToResetPasswordDto> ResetPassword(UserToResetPasswordDto userDto)
+        public async Task<NotificationToResetPasswordDto> ResetPassword(UserToResetPasswordDto userDto , INotificationRepository notificationRepository , INotificationTemplateRepository notificationTemplateRepository , INotificationContentBuilder notificationContentBuilder)
         {
             // To reset Password We Follow These Business Rules:
             /*
@@ -108,16 +108,28 @@ namespace TravelAgency.Core.Application.Services
 
 
             string newPassword = Guid.NewGuid().ToString();
+
+
+            NotificationTemplate notificationTemplate = notificationTemplateRepository.GetNotificationByType(Templates.resetPassword);
+
+            Dictionary<string , string> placeholders = new Dictionary<string, string>()
+            {
+                {"UserName",user.UserName},
+                {"NewPassword", newPassword}
+            };
+
+            string content = notificationContentBuilder.BuildContent(notificationTemplate, placeholders);
+
             Notification notification = new Notification()
             {
                 UserId = user.Id,
                 Recipient = userDto.Email is not null ? userDto.Email : userDto.PhoneNumber,
-                Content = $"Dear {user.UserName} , your New Password is {newPassword} .",
+                Content = content,
                 TemplateName = Templates.resetPassword,
                 Channel = userDto.Email is not null ? Channels.email : Channels.sms,
             };
 
-           await _notificationRepository.AddNotificationAsync(notification);
+           await notificationRepository.AddNotificationAsync(notification);
 
             var passwordHasher = new PasswordHasher<User>();
             string hashedPassword = passwordHasher.HashPassword(null!, newPassword);
