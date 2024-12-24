@@ -30,10 +30,10 @@
   {
     "FirstName": "Anas",
     "LastName": "Mahmoud",
-    "UserName": "Anas Mahmoud",
-    "Email": "Anas@gmail.com",
-    "PhoneNumber": "01055262625",
-    "HashedPassword": "AQAAAAIAAYagAAAAEL9PEG9DMROr0D41oWe3GURuLVaocts7LF/oHUf6JzUQW1l31hgYg/qnOvRE0bdfnA==",
+    "UserName": "Anas Mahmoud Alarby",
+    "Email": "Anasaraby123@gmail.com",
+    "PhoneNumber": "01000926538",
+    "HashedPassword": "AQAAAAIAAYagAAAAECu/qeLDDZCTe1cpY4g1CtVvmw5Gm6ogQrxhR8QkPvuou\u002BTYnZeYE6oaQ8x/oNwZRg==",
     "Address": {
       "Country": "Egypt",
       "City": "Giza"
@@ -68,19 +68,5 @@
     },
     "Role": "user",
     "Id": 5
-  },
-  {
-    "FirstName": "AyHaga",
-    "LastName": "Farag",
-    "UserName": "Mohmd Farag",
-    "Email": "Mohad@gmail.com",
-    "PhoneNumber": "010515625",
-    "HashedPassword": "AQAAAAIAAYagAAAAEJSxR3EinL5ZAVVZ8r0RDDsvjFrZtPiARReunMUmB\u002BeKILlLlr6CAk6QrnlS6xR3zQ==",
-    "Address": {
-      "Country": "Egypt",
-      "City": "Giza"
-    },
-    "Role": "user",
-    "Id": 6
   }
 ]

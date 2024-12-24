@@ -19,9 +19,9 @@ namespace TravelAgency.APIs.Controllers
         }
 
         [HttpPut("changeProfile")]
-        public ActionResult<string> ChangeProfile(string? token, [FromBody] UserToChangeProfileDto userProfileDto)
+        public ActionResult<string> ChangeProfile(string? token, [FromBody] UserToChangeProfileDto userProfileDto , [FromServices] IIdentityRepository identityRepository)
         {
-            return Ok(_profileService.ChangeProfile(token, userProfileDto));
+            return Ok(_profileService.ChangeProfile(token, userProfileDto , identityRepository));
         }
 
         [HttpGet("returnReservations")]

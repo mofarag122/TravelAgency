@@ -1546,5 +1546,41 @@
     "TemplateName": "hotelReservation",
     "Channel": "sms",
     "Id": 129
+  },
+  {
+    "UserId": 3,
+    "Recipient": "Anas@gmail.com",
+    "Content": "New Password ea49dba2-fe4e-4c04-b7dc-ae9eff28ade7 for Anas Mahmoud",
+    "CreatedAt": "2024-12-24T20:11:56.8354944Z",
+    "SentAt": "2024-12-24T20:11:59.7948004Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "email",
+    "Id": 130
+  },
+  {
+    "UserId": 3,
+    "Recipient": "01000926538",
+    "Content": "Congratulations Anas Mahmoud Alarby , You have reserved Room 2 in Grand Luxury Hotel ",
+    "CreatedAt": "2024-12-24T20:18:07.1534279Z",
+    "SentAt": "2024-12-24T20:18:08.4022207Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 131
+  },
+  {
+    "UserId": 3,
+    "Recipient": "Anasaraby123@gmail.com",
+    "Content": " New Password 23b21ef6-f340-47c5-b26e-fc19d36b5259 for Anas Mahmoud Alarby",
+    "CreatedAt": "2024-12-24T20:31:47.5248484Z",
+    "SentAt": "2024-12-24T20:31:48.906065Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "email",
+    "Id": 132
   }
 ]

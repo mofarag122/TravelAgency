@@ -1,11 +1,6 @@
 [
   {
-    "TemplateContent": "Dear {UserName}, Your New Password is {NewPassword}",
-    "Template": "resetPassword",
-    "Id": 1
-  },
-  {
-    "TemplateContent": " New Password {NewPassword} for {UserName}",
+    "TemplateContent": "New Password {NewPassword} for {UserName}",
     "Template": "resetPassword",
     "Id": 2
   },
