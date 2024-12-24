@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.Extensions.Configuration;
+using TravelAgency.Core.Application._Common;
 using TravelAgency.Core.Application.Builder.Notification_Builder;
 using TravelAgency.Core.Application.DTOs.HotelReservation;
 using TravelAgency.Core.Application.Exceptions;
@@ -16,37 +17,18 @@ namespace TravelAgency.Core.Application.Services
     public class HotelReservationService : IHotelReservationService
     {
         private IHotelRepository _hotelRepository;
-        private IHotelReservationRepository _reservationRepository;
         private IAuthenticationRepository _authenticationRepository;    
-        private IIdentityRepository _identityRepository;
-        public HotelReservationService(IHotelRepository hotelRepository, IHotelReservationRepository reservationRepository, IAuthenticationRepository authenticationRepository, IIdentityRepository identityRepository, IConfiguration configuration)
+        public HotelReservationService(IHotelRepository hotelRepository, IAuthenticationRepository authenticationRepository)
         {
-            _hotelRepository = hotelRepository;
-            _reservationRepository = reservationRepository;
+            _hotelRepository = hotelRepository;      
             _authenticationRepository = authenticationRepository;
-            _identityRepository = identityRepository;
         }
+
 
         public List<HotelToReturnDto> GetAllHotels(string? token)
         {
 
-
-            // To Return All Hotels We Follow The Business Rules:
-            /*
-             * 1. Check if User Authenticated or not
-             * 2. Get The Hotels with room 
-             * 3. Mapping From hotel -> hotelToReturnDto with Resolving The Image Path
-             */
-
-
-            if (token is null)
-                throw new UnAutherized("You Are Not Autherized.");
-
-            Authentication authentication =   _authenticationRepository.FindUserByToken(token) ?? null!;
-           
-            if(authentication is null)
-                throw new UnAutherized("You Are Not Autherized.");
-
+            Authentication authentication = AuthenticationSchema.CheckAuthentication(_authenticationRepository, token);
 
             List<Hotel> hotels = _hotelRepository.GetAllHotelsWithRooms();
 
@@ -67,13 +49,7 @@ namespace TravelAgency.Core.Application.Services
         }
         public HotelToReturnDto GetHotel( string? token, int hotelId)
         {
-            if (token is null)
-                throw new UnAutherized("You Are Not Autherized.");
-
-            Authentication authentication = _authenticationRepository.FindUserByToken(token) ?? null!;
-
-            if (authentication is null)
-                throw new UnAutherized("You Are Not Autherized.");
+            Authentication authentication = AuthenticationSchema.CheckAuthentication(_authenticationRepository, token);
 
             Hotel hotel = _hotelRepository.GetHotel(hotelId);
 
@@ -94,13 +70,7 @@ namespace TravelAgency.Core.Application.Services
         public List<HotelToReturnDto> GetHotels(string? token , HotelSpecParmas hotelSpecs)
         {
 
-            if (token is null)
-                throw new UnAutherized("You Are Not Autherized.");
-
-            Authentication authentication = _authenticationRepository.FindUserByToken(token) ?? null!;
-
-            if (authentication is null)
-                throw new UnAutherized("You Are Not Autherized.");
+            Authentication authentication = AuthenticationSchema.CheckAuthentication(_authenticationRepository, token);
 
             BaseSpecifications<Hotel> spec = new HotelFilterationSpecifications(hotelSpecs.Sort, hotelSpecs.SearchedName, hotelSpecs.SearchedCountry, hotelSpecs.SearchedCity, hotelSpecs.SearchedRegion);
 
@@ -123,15 +93,9 @@ namespace TravelAgency.Core.Application.Services
         }
         public RoomToReturnDto GetRoom(string? token , int hotelId , int roomId)
         {
-            if (token is null)
-                throw new UnAutherized("You Are Not Autherized.");
+            Authentication authentication = AuthenticationSchema.CheckAuthentication(_authenticationRepository, token);
 
-            Authentication authentication = _authenticationRepository.FindUserByToken(token) ?? null!;
-
-            if (authentication is null)
-                throw new UnAutherized("You Are Not Autherized.");
-
-           Room room =   _hotelRepository.GetRoomById(hotelId, roomId);
+            Room room =   _hotelRepository.GetRoomById(hotelId, roomId);
 
             if (room is null)
                 throw new NotFound("Room", $"Number {roomId}");
@@ -147,14 +111,7 @@ namespace TravelAgency.Core.Application.Services
         public List<RoomToReturnDto> GetRooms(string? token , int hotelId , RoomSpecParams roomSpecs)
         {
 
-            if (token is null)
-                throw new UnAutherized("You Are Not Autherized.");
-
-            Authentication authentication = _authenticationRepository.FindUserByToken(token) ?? null!;
-
-            if (authentication is null)
-                throw new UnAutherized("You Are Not Autherized.");
-
+            Authentication authentication = AuthenticationSchema.CheckAuthentication(_authenticationRepository, token);
 
 
             BaseSpecifications<Room> spec = new RoomsFilterationSpecifation(roomSpecs.Price, roomSpecs.Type, roomSpecs.Sort);
@@ -178,16 +135,11 @@ namespace TravelAgency.Core.Application.Services
 
             return roomsToReturnDto;
         }
-        public bool ReserveRoom(string? token, ReservationToCreateDto reservationDto , INotificationRepository notificationRepository , INotificationTemplateRepository notificationTemplateRepository , INotificationContentBuilder notificationContentBuilder)
+        public bool ReserveRoom(string? token, ReservationToCreateDto reservationDto , INotificationRepository notificationRepository , INotificationTemplateRepository notificationTemplateRepository , INotificationContentBuilder notificationContentBuilder , IIdentityRepository identityRepository , IHotelReservationRepository reservationRepository)
         {
-       
-            if (token is null)
-                throw new UnAutherized("You Are Not Authorized.");
 
-            Authentication authentication = _authenticationRepository.FindUserByToken(token)!;
-            if (authentication is null)
-                throw new UnAutherized("You Are Not Authorized.");
-
+            Authentication authentication = AuthenticationSchema.CheckAuthentication(_authenticationRepository, token);
+           
             if (DateTime.Parse(reservationDto.StartDate) < DateTime.UtcNow)
                 throw new BadRequest($"Start Date Must be from {DateTime.UtcNow}");
 
@@ -201,7 +153,7 @@ namespace TravelAgency.Core.Application.Services
 
 
 
-            List<HotelReservation?> roomReservations = _reservationRepository.GetReservations(reservationDto.HotelId, reservationDto.RoomId);         
+            List<HotelReservation?> roomReservations = reservationRepository.GetReservations(reservationDto.HotelId, reservationDto.RoomId);         
             if (roomReservations != null)
             {
                 foreach (var roomReservation in roomReservations)
@@ -221,7 +173,7 @@ namespace TravelAgency.Core.Application.Services
 
 
             Hotel hotel = _hotelRepository.GetHotel(reservationDto.HotelId);
-            User? user = _identityRepository.FindUserById(authentication.UserId);
+            User? user = identityRepository.FindUserById(authentication.UserId);
 
             NotificationTemplate notificationTemplate = notificationTemplateRepository.GetNotificationByType(Templates.hotelReservation);
             Dictionary<string, string> placeholders = new Dictionary<string, string>()
@@ -253,7 +205,7 @@ namespace TravelAgency.Core.Application.Services
 
             
             hotelReservation.Cost = room.PricePerNight * hotelReservation.Duration;
-            _reservationRepository.AddReservation(hotelReservation);
+            reservationRepository.AddReservation(hotelReservation);
            
 
             return true;

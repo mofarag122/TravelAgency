@@ -1486,5 +1486,17 @@
     "TemplateName": "hotelReservation",
     "Channel": "sms",
     "Id": 124
+  },
+  {
+    "UserId": 6,
+    "Recipient": "010515625",
+    "Content": "Congratulations Mohmd Farag , You have reserved Room 4 in Sunset Paradise ",
+    "CreatedAt": "2024-12-24T16:01:15.4406332Z",
+    "SentAt": "2024-12-24T16:01:17.8379843Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "hotelReservation",
+    "Channel": "sms",
+    "Id": 125
   }
 ]
