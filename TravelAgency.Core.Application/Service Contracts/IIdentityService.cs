@@ -7,11 +7,8 @@ namespace TravelAgency.Core.Application.Service_Contracts
     public interface IIdentityService
     {
         public User Register(UserToRegisterDto userDto);
-
         public string Login(UserToLoginDto userDto);
-
         public Task<NotificationToResetPasswordDto> ResetPassword(UserToResetPasswordDto userDto);
-
         public string Logout(string? token);
     }
 }

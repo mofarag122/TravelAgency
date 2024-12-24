@@ -1330,5 +1330,53 @@
     "TemplateName": "hotelReservation",
     "Channel": "sms",
     "Id": 111
+  },
+  {
+    "UserId": 1,
+    "Recipient": "Andro@gmail.com",
+    "Content": "Dear AndroMakram , your New Password is a25a2377-b1a1-4c9f-93fe-2bbe73776f2e .",
+    "CreatedAt": "2024-12-24T09:43:36.9011147Z",
+    "SentAt": "2024-12-24T09:43:38.2228497Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "email",
+    "Id": 112
+  },
+  {
+    "UserId": 1,
+    "Recipient": "Andro@gmail.com",
+    "Content": "Dear AndroMakram , your New Password is b30cbcd8-4f0b-4146-ab32-125f538614c9 .",
+    "CreatedAt": "2024-12-24T09:46:09.3806359Z",
+    "SentAt": "2024-12-24T09:46:11.8936367Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "email",
+    "Id": 113
+  },
+  {
+    "UserId": 1,
+    "Recipient": "Andro@gmail.com",
+    "Content": "Dear AndroMakram , your New Password is 9a2ba149-a3dd-46d6-a692-edbfc61c87ba .",
+    "CreatedAt": "2024-12-24T10:28:34.1038811Z",
+    "SentAt": "2024-12-24T10:28:35.3338437Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "email",
+    "Id": 114
+  },
+  {
+    "UserId": 1,
+    "Recipient": "Andro@gmail.com",
+    "Content": "Dear AndroMakram , your New Password is b038e098-5e81-4e62-aeaa-d9e18694bf5a .",
+    "CreatedAt": "2024-12-24T10:31:00.1220914Z",
+    "SentAt": "2024-12-24T10:31:03.1103403Z",
+    "IsSent": true,
+    "FailureReason": null,
+    "TemplateName": "resetPassword",
+    "Channel": "email",
+    "Id": 115
   }
 ]

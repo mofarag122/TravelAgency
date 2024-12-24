@@ -14,6 +14,6 @@ namespace TravelAgency.Core.Domain.Repository_Contracts
         public void RemoveAuthentication(int userId);
 
         public string? GetTokenByUserId(int userId);
-        public Authentication? FindUserByToken(string Token);
+        public Authentication? FindUserByToken(string token);
     }
 }

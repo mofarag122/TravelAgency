@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,28 +12,24 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
 {
     public class AuthenticationRepository : IAuthenticationRepository
     {
-        private _StorageManagement<Authentication> _StorageManagement;
-
-        private const string FilePath = "D:\\SDA Project\\TravelAgency\\TravelAgency.Infrastructure.Persistence\\Data Storage\\Authentications.json";
-        public AuthenticationRepository()
+        private _StorageManagement<Authentication> _StorageManagement;    
+        public AuthenticationRepository(IConfiguration configuration)
         {
-            _StorageManagement = new _StorageManagement<Authentication>(FilePath);
+            string filePath = configuration["FileStorage:AuthenticationsFilePath"]!;
+            _StorageManagement = new _StorageManagement<Authentication>(filePath);
         }
 
         public void AddAuthentication(Authentication authentication)
         {
             _StorageManagement.Add(authentication); 
         }
-
         public void RemoveAuthentication(int userId) 
         {
             List<Authentication> authentications = _StorageManagement.GetAll();
             Authentication authentication = authentications.FirstOrDefault(u => u.UserId == userId) ?? null!;
             authentications.Remove(authentication);
             _StorageManagement.Save(authentications);
-
         }
-
         public string? GetTokenByUserId(int userId)
         {
             Authentication authentication = _StorageManagement.GetAll().FirstOrDefault(u => u.UserId == userId)!;
@@ -40,7 +37,6 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
                 return null!;
             return authentication.Token;
         }
-
         public Authentication? FindUserByToken(string token)
         {
             return _StorageManagement.GetAll().FirstOrDefault(T => T.Token == token) ?? null!;

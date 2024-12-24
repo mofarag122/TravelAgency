@@ -12,7 +12,6 @@ namespace TravelAgency.Infrastructure.Persistence.Data_Storage
     {
         private readonly string FilePath;
         private readonly JsonSerializerOptions _jsonSerializerOptions;
-
         public _StorageManagement(string filePath)
         {
             FilePath = filePath;

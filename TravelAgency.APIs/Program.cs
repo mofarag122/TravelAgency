@@ -62,7 +62,6 @@ namespace TravelAgency.APIs
             #endregion
 
             builder.Services.AddScoped(typeof(IDataStorageInitializer), typeof(DataStorageInitializer));
-
             builder.Services.AddDirectoryBrowser();
             #endregion
 
@@ -74,6 +73,7 @@ namespace TravelAgency.APIs
             app.InitializeData();   
 
             #endregion
+          
             #region Kestrel Pipelines Within a Request
 
             app.UseMiddleware<ExceptionHandlingMiddleware>();
