@@ -2,6 +2,7 @@
 using ThirdParty.Events.BLL.DTOs;
 using TravelAgency.Core.Application.DTOs.UserProfile;
 using TravelAgency.Core.Application.Service_Contracts;
+using TravelAgency.Core.Domain.Repository_Contracts;
 using TravelAgency.Infrastructure.ThirdParty.Services;
 
 namespace TravelAgency.APIs.Controllers
@@ -18,19 +19,19 @@ namespace TravelAgency.APIs.Controllers
         }
 
         [HttpPut("changeProfile")]
-        public ActionResult<string> ChangeProfile(string? token, [FromBody] UserToChangeProfileDto userProfileDto)
+        public ActionResult<string> ChangeProfile(string? token, [FromBody] UserToChangeProfileDto userProfileDto , [FromServices] IIdentityRepository identityRepository)
         {
-            return Ok(_profileService.ChangeProfile(token, userProfileDto));
+            return Ok(_profileService.ChangeProfile(token, userProfileDto , identityRepository));
         }
 
         [HttpGet("returnReservations")]
-        public ActionResult<ReservationToReturnDto?> GetUserReservations(string? token)
+        public ActionResult<ReservationToReturnDto?> GetUserReservations(string? token, IHotelRepository hotelRepository, IHotelReservationRepository reservationRepository)
         {
             return Ok(_profileService.ReturnAllReservation(token));
         }
 
         [HttpGet("returnEventReservations")]
-        public ActionResult<List<EventReservationToReturnDto>> GetEventReservations(string? token)
+        public ActionResult<List<EventReservationToReturnDto>> GetEventReservations(string? token, IHotelRepository hotelRepository, IHotelReservationRepository reservationRepository)
         {
             return Ok(_eventAdapterService.GetUserReservations(token));
         }
@@ -48,9 +49,9 @@ namespace TravelAgency.APIs.Controllers
         }
 
         [HttpGet("getRecommendedEvents")]
-        public ActionResult<List<EventToReturnDto>> GetRecommendedEvents(string? token)
+        public ActionResult<List<EventToReturnDto>> GetRecommendedEvents(string? token,[FromServices] IHotelRepository hotelRepository,[FromServices] IHotelReservationRepository reservationRepository)
         {
-            return _eventAdapterService.RecommendEvents(token);
+            return _eventAdapterService.RecommendEvents(token , hotelRepository , reservationRepository);
         }
 
         [HttpPut("updateReservation")]

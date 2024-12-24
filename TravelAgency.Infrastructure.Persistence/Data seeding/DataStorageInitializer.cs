@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,10 +13,12 @@ namespace TravelAgency.Infrastructure.Persistence.Data_seeding
     public class DataStorageInitializer : IDataStorageInitializer
     {
         private readonly IHotelRepository _hotelRepository;
+        private IConfiguration _configuration;    
 
-        public DataStorageInitializer(IHotelRepository hotelRepository)
+        public DataStorageInitializer(IHotelRepository hotelRepository ,IConfiguration configuration)
         {
             _hotelRepository = hotelRepository;
+            _configuration = configuration; 
         }
 
         public void Seed()
@@ -24,7 +27,7 @@ namespace TravelAgency.Infrastructure.Persistence.Data_seeding
             List<Hotel> hotels = _hotelRepository.GetAllHotels();
             if (!hotels.Any())
             {
-                string hotelSeedDataPath = "D:\\SDA Project\\TravelAgency\\TravelAgency.Infrastructure.Persistence\\Data seeding\\HotelSeedData.json";
+                string hotelSeedDataPath = _configuration["DataSeedingFiles:HotelsFilePath"]!;
 
                 if (!File.Exists(hotelSeedDataPath))
                     return;
@@ -51,7 +54,7 @@ namespace TravelAgency.Infrastructure.Persistence.Data_seeding
             bool hasRoomData = hotels.Any(hotel => _hotelRepository.GetRoomsById(hotel.Id).Any());
             if (!hasRoomData)
             {
-                string roomSeedDataPath = "D:\\SDA Project\\TravelAgency\\TravelAgency.Infrastructure.Persistence\\Data seeding\\RoomSeedData.json";
+                string roomSeedDataPath = _configuration["DataSeedingFiles:RoomsFilePath"]!;
 
                 if (!File.Exists(roomSeedDataPath))
                     return;

@@ -1,4 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using TravelAgency.Core.Application._Common;
+using TravelAgency.Core.Application.Builder.Notification_Builder;
+using TravelAgency.Core.Application.Chain_Of_Responsibility;
+using TravelAgency.Core.Application.Chain_Of_Responsibility.Identity;
 using TravelAgency.Core.Application.DTOs.Identity;
 using TravelAgency.Core.Application.DTOs.Notification;
 using TravelAgency.Core.Application.Exceptions;
@@ -13,74 +18,44 @@ namespace TravelAgency.Core.Application.Services
     {
         private IIdentityRepository _identityRepository;
         private IAuthenticationRepository _authenticationRepository;
-        private INotificationRepository _notificationRepository;
-        public IdentityService(IIdentityRepository identityRepository , IAuthenticationRepository authenticationRepository, INotificationRepository notificationRepository)
+        public IdentityService(IIdentityRepository identityRepository, IAuthenticationRepository authenticationRepository)
         {
             _identityRepository = identityRepository;
             _authenticationRepository = authenticationRepository;
-            _notificationRepository = notificationRepository;
         }
 
         public User Register(UserToRegisterDto userDto)
         {
-            // To Register We Follow The Business Rules:
+            // To Register We Follow These Business Rules:
             /*
-             * 1. Validate The Dto Got From The Request Body (Done Using Fluent Validation)
-             * 2. Check if Email, UserName Does Not Exist Before
+             * 1. Validate The Dto Got From The Request Body (Done Using Data Annotations)
+             * 2. Check if Email, UserName and PhoneNumebr do not Exist Before
              * 3. Hash The Password
              * 4. Mapping From UserDto -> User
              * 5. Save The User Data in Data Storage
              */
 
-            if (userDto is null)
-                throw new BadRequest("You have To Enter The Data");
 
-            if (_identityRepository.FindUserByEmail(userDto.Email) is not null)
-                throw new BadRequest("Email already Exists");
+            IHandler<User> checkEmailExistance = new CheckEmailExistanceHandler(_identityRepository);
+            IHandler<User> checkUserNameExistance = new CheckUserNameExistanceHandler(_identityRepository);
+            IHandler<User> checkPhoneNumberExistance = new CheckPhoneNumberExistanceHandler(_identityRepository);
+            IHandler<User> hashPassword = new HashPasswordHandler();
+            IHandler<User> mapping = new MappingHandler();
 
-            if (_identityRepository.FindUserByUserName(userDto.UserName) is not null)
-                throw new BadRequest("UserName already Exists");
+            checkEmailExistance.SetNext(checkUserNameExistance);
+            checkUserNameExistance.SetNext(checkPhoneNumberExistance);
+            checkPhoneNumberExistance.SetNext(hashPassword);
+            hashPassword.SetNext(mapping);
 
-            if(userDto.PhoneNumber is not null)
-            {
-                ;
-                if (_identityRepository.FindUserByPhoneNumber(userDto.PhoneNumber) is not null)
-                    throw new BadRequest("Phone Number already Exists.");
-            }
-
-           
-
-            var passwordHasher = new PasswordHasher<User>();
-            string hashedPassword = passwordHasher.HashPassword(null!, userDto.Password);
-
-            var user = new User
-            {
-                FirstName = userDto.FirstName,
-                LastName = userDto.LastName,
-                UserName = userDto.UserName,
-                Email = userDto.Email,
-                HashedPassword = hashedPassword,
-                PhoneNumber = userDto.PhoneNumber,
-                Address = new Address
-                {
-                    Country = userDto.Address.Country,
-                    City = userDto.Address.City
-                },
-
-
-            };
-            if (userDto.Role.ToLower() == "user")
-                user.Role = Roles.user;
-            else if (userDto.Role.ToLower() == "admin")
-                user.Role = Roles.admin;
-
-
+            User user = checkEmailExistance.Handle(userDto);
             if (_identityRepository.AddUser(user))
                 return user;
             else
                 throw new BadRequest("Invalid Registration!");
-        }
 
+
+          
+        }
         public string Login(UserToLoginDto userDto)
         {
             // To Login We Follow These Business Rules:
@@ -88,45 +63,28 @@ namespace TravelAgency.Core.Application.Services
              * 1. Validate The Dto Got From The Request Body (Done Using Fluent Validation)
              * 2. Check if Email with Hashed Password are Matching
              * 3. Mapping From User -> UserDto
-             * 4. generate Token(GUID) and return 
+             * 4. Generate Token(GUID) and return 
              */
 
-            User user = _identityRepository.FindUserByEmail(userDto.Email);
+            IHandler<string> checkEmailValidity = new CheckEmailValidityHandler(_identityRepository);
+            IHandler<string> passwordVerification = new PasswordVerificationHandler(_identityRepository);
+            IHandler<string> returnToken = new GenerateTokenHandler(_authenticationRepository);
 
-            if (user is null)
-                throw new BadRequest("Invalid Login");
+            checkEmailValidity.SetNext(passwordVerification);
+            passwordVerification.SetNext(returnToken);
+            return checkEmailValidity.Handle(userDto);
 
-            string token = _authenticationRepository.GetTokenByUserId(user.Id)!;
-
-            if(token is not null)
-                return $"Token: {token}";
-
-            var passwordHasher = new PasswordHasher<User>();
-            PasswordVerificationResult verificationResult = passwordHasher.VerifyHashedPassword(user, user.HashedPassword, userDto.Password);
-
-            if (verificationResult != PasswordVerificationResult.Success)
-                throw new BadRequest("Invalid Login");
-
-            token = Guid.NewGuid().ToString();
            
-            Authentication authentication  = new Authentication();
-            authentication.UserId = user.Id;    
-            authentication.Token = token;
-            _authenticationRepository.AddAuthentication(authentication);
-
-
-            return $"Token: {token}";
         }
-
-        public async Task<NotificationToResetPasswordDto> ResetPassword(UserToResetPasswordDto userDto)
+        public async Task<NotificationToResetPasswordDto> ResetPassword(UserToResetPasswordDto userDto , INotificationRepository notificationRepository , INotificationTemplateRepository notificationTemplateRepository , INotificationContentBuilder notificationContentBuilder)
         {
-            // To reset Password We Follow The Business Rules:
+            // To reset Password We Follow These Business Rules:
             /*
-             * 1. Check if User Send Either Email or Phone Number   
-             * 2. Check if Email or Phone Number  Exists 
+             * 1. Check if User Sent Either Email or Phone Number   
+             * 2. Check if Email or PhoneNumber  Exists 
              * 3. Make a Notification with new Password  
              * 4. Update User Password
-             * 5. return The Notification Content as a reponse
+             * 5. return The Notification Content as a response
              */
 
 
@@ -150,16 +108,28 @@ namespace TravelAgency.Core.Application.Services
 
 
             string newPassword = Guid.NewGuid().ToString();
+
+
+            NotificationTemplate notificationTemplate = notificationTemplateRepository.GetNotificationByType(Templates.resetPassword);
+
+            Dictionary<string , string> placeholders = new Dictionary<string, string>()
+            {
+                {"UserName",user.UserName},
+                {"NewPassword", newPassword}
+            };
+
+            string content = notificationContentBuilder.BuildContent(notificationTemplate, placeholders);
+
             Notification notification = new Notification()
             {
                 UserId = user.Id,
                 Recipient = userDto.Email is not null ? userDto.Email : userDto.PhoneNumber,
-                Content = $"Dear {user.UserName} , your New Password is {newPassword} .",
+                Content = content,
                 TemplateName = Templates.resetPassword,
                 Channel = userDto.Email is not null ? Channels.email : Channels.sms,
             };
 
-           await _notificationRepository.AddNotificationAsync(notification);
+           await notificationRepository.AddNotificationAsync(notification);
 
             var passwordHasher = new PasswordHasher<User>();
             string hashedPassword = passwordHasher.HashPassword(null!, newPassword);
@@ -176,19 +146,16 @@ namespace TravelAgency.Core.Application.Services
             };
 
         }
-
         public string Logout(string? token)
         {
-            if (token is null)
-                throw new UnAutherized("You Are Not Autherized!");
+            // To Logout We Follow Theese Business Rules:
+            /*
+             * 1. Check if User Authenticated   
+             * 2. Remove The Token            
+            */
 
-            Authentication authentication = _authenticationRepository.FindUserByToken(token)!;
-
-            if(authentication is null)
-                throw new UnAutherized("You Are Not Autherized!");
-
+            Authentication authentication =  AuthenticationSchema.CheckAuthentication(_authenticationRepository, token);
             _authenticationRepository.RemoveAuthentication(authentication.UserId);
-
             return "Logout Done Successfully";
         }
     }

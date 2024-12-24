@@ -29,9 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgency.Infrastructure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgency.APIs", "TravelAgency.APIs\TravelAgency.APIs.csproj", "{1CDCE828-35A1-476A-95E9-140C57A5B32C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgency.NotificationHandling", "TravelAgency.NotificationHandling\TravelAgency.NotificationHandling.csproj", "{46CF2A37-23E7-421B-9983-1CE52AC00D33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgency.NotificationHandling", "TravelAgency.NotificationHandling\TravelAgency.NotificationHandling.csproj", "{46CF2A37-23E7-421B-9983-1CE52AC00D33}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAgency.Dashboard", "TravelAgency.Dashboard\TravelAgency.Dashboard.csproj", "{D9B3F9FE-64F2-48A1-9138-080A7272A1F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAgency.Dashboard", "TravelAgency.Dashboard\TravelAgency.Dashboard.csproj", "{D9B3F9FE-64F2-48A1-9138-080A7272A1F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,7 +83,7 @@ Global
 		{2BECB7A1-78F1-49BA-ADF2-086B19E1EE4B} = {AB6AFDCD-4E2E-4BAA-B1A4-FD053AD9C7D3}
 		{94A26093-182B-40AA-AD36-BB64B7738629} = {AB6AFDCD-4E2E-4BAA-B1A4-FD053AD9C7D3}
 		{1CDCE828-35A1-476A-95E9-140C57A5B32C} = {0B1F5337-34D9-41F1-B9EE-1D13EB880EC6}
-		{46CF2A37-23E7-421B-9983-1CE52AC00D33} = {49040075-BE40-44C3-A118-E2604F4387B8}
+		{46CF2A37-23E7-421B-9983-1CE52AC00D33} = {AB6AFDCD-4E2E-4BAA-B1A4-FD053AD9C7D3}
 		{D9B3F9FE-64F2-48A1-9138-080A7272A1F9} = {E1A86E20-EA5D-4C9B-A026-89107C095567}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

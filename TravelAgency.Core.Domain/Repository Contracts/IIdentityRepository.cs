@@ -10,17 +10,12 @@ namespace TravelAgency.Core.Domain.Repository_Contracts
 {
     public interface IIdentityRepository
     {
-        public bool AddUser(User User);
-
+        public bool AddUser(User user);
         public void UpdateUser(User user);
-        public User FindUserByEmail(string Email);
-
-        public User FindUserByUserName(string UserName);
-        public User FindUserByPhoneNumber(string UserName);
-
+        public User FindUserByEmail(string email);
+        public User FindUserByUserName(string userName);
+        public User FindUserByPhoneNumber(string userName);
         public User FindUserById(int userId);
-        
-
-        public bool CheckEmailWithPassword(string Email, string HashedPassword);
+        public bool CheckEmailWithPassword(string email, string ashedPassword);
     }
 }

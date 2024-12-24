@@ -1,7 +1,7 @@
 [
   {
     "Name": "Grand Luxury Hotel",
-    "ImagePath": "TravelAgency.APIs\\wwwroot\\images\\hotels\\Sleep-siwa.jpg",
+    "ImagePath": "images/hotels/photo1.jpg",
     "Location": {
       "Country": "USA",
       "City": "New York",

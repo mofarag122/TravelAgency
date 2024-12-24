@@ -1,27 +1,12 @@
 [
   {
-    "UserId": 14,
-    "Token": "e3027860-7145-40f9-b262-b0af994596a3",
+    "UserId": 6,
+    "Token": "8653934c-44ca-4ed4-8c91-e7a6e6221462",
     "Id": 1
   },
   {
-    "UserId": 15,
-    "Token": "93a12897-7525-4382-8c45-295f1fe54ad4",
+    "UserId": 3,
+    "Token": "7f8febc7-2112-4488-8b33-cedc4c42183b",
     "Id": 2
-  },
-  {
-    "UserId": 1,
-    "Token": "e2fe19fa-e26a-4519-8051-f4643b02f60a",
-    "Id": 3
-  },
-  {
-    "UserId": 2,
-    "Token": "bde9dfee-7771-4766-a608-edc32c18e4b9",
-    "Id": 4
-  },
-  {
-    "UserId": 4,
-    "Token": "66dceb50-e04a-46df-8406-5260c9cccd2a",
-    "Id": 5
   }
 ]

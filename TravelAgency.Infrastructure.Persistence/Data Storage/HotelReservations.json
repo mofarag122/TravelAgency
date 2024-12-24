@@ -58,11 +58,11 @@
     "UserId": 2,
     "HotelId": 1,
     "RoomId": 1,
-    "StartDate": "2025-04-01",
-    "EndDate": "2025-05-01",
+    "StartDate": "2025-08-01",
+    "EndDate": "2025-08-30",
     "ReservationDate": "2024-12-18T19:02:35.7031356Z",
-    "Cost": 3600.0,
-    "Duration": 30,
+    "Cost": 3480.0,
+    "Duration": 29,
     "Id": 8
   },
   {

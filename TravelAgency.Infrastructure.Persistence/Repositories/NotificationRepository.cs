@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,31 +13,26 @@ namespace TravelAgency.Infrastructure.Persistence.Repositories
 {
     public class NotificationRepository : INotificationRepository
     {
-        private _StorageManagement<Notification> StorageManagement;
-
-        private const string FilePath = "D:\\SDA Project\\TravelAgency\\TravelAgency.Infrastructure.Persistence\\Data Storage\\Notifications.json";
-
-        public NotificationRepository()
+        private _StorageManagement<Notification> _StorageManagement;
+        public NotificationRepository(IConfiguration configuration)
         {
-            StorageManagement = new _StorageManagement<Notification>(FilePath);
+            string filePath = configuration["FileStorage:NotificationsFilePath"]!;
+            _StorageManagement = new _StorageManagement<Notification>(filePath);     
         }
-
 
         public async Task AddNotificationAsync(Notification notification)
         {
-            StorageManagement.Add(notification);
+            _StorageManagement.Add(notification);
             await Task.CompletedTask;
         }
-
         public IEnumerable<Notification> GetAllNotifications()
         {
-            return StorageManagement.GetAll();
+            return _StorageManagement.GetAll();
         }
-
         public async Task UpdateNotification(Notification notification)
         {
-            
-            StorageManagement.Update(notification);
+
+            _StorageManagement.Update(notification);
             await Task.CompletedTask;
         }
     }
