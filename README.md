@@ -1,5 +1,6 @@
 -Developed a scalable backend system for a travel agency using C# 
 .NET Core and Onion Architecture. 
+
 -Designed and implemented modules for Identity Management, Hotel 
 Reservations, Event Reservations, and User Profiles. 
 
